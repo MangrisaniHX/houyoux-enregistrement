@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enregistrement travailleur — Houyoux Constructions</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f2a4a;
+    --blue: #1a4a7a;
+    --accent: #e8a020;
+    --accent-light: #fdf3e0;
+    --success: #1a7a3a;
+    --success-light: #e8f5ed;
+    --danger: #c00000;
+    --danger-light: #fde8e8;
+    --warning: #7d5a00;
+    --warning-light: #fff9e6;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-600: #6c757d;
+    --gray-800: #343a40;
+    --white: #ffffff;
+    --shadow: 0 2px 16px rgba(15,42,74,0.10);
+    --shadow-lg: 0 8px 40px rgba(15,42,74,0.16);
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(135deg, #0f2a4a 0%, #1a4a7a 50%, #0f2a4a 100%);
+    min-height: 100vh;
+    padding: 24px 16px 60px;
+    color: var(--gray-800);
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    margin-bottom: 28px;
+    color: white;
+  }
+  .header-logo {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .header p {
+    font-size: 14px;
+    opacity: 0.75;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* PROGRESS */
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.15);
+    border-radius: 100px;
+    height: 6px;
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 100px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .progress-label {
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+    margin-bottom: 8px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 16px;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--gray-200);
+  }
+  .section-badge {
+    background: var(--navy);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  /* FORM ELEMENTS */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group:last-child { margin-bottom: 0; }
+
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  label .required {
+    color: var(--danger);
+    margin-left: 3px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--gray-300);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--gray-800);
+    background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(26,74,122,0.12);
+  }
+  input.error, select.error { border-color: var(--danger); }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236c757d' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+
+  /* FILE UPLOAD */
+  .file-upload {
+    border: 2px dashed var(--gray-300);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--gray-100);
+    position: relative;
+  }
+  .file-upload:hover { border-color: var(--blue); background: #f0f6ff; }
+  .file-upload.has-file { border-color: var(--success); background: var(--success-light); }
+  .file-upload input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+  }
+  .file-upload-icon { font-size: 28px; margin-bottom: 8px; }
+  .file-upload-text { font-size: 13px; color: var(--gray-600); }
+  .file-upload-text strong { color: var(--blue); }
+  .file-name { font-size: 12px; color: var(--success); font-weight: 600; margin-top: 6px; font-family: 'DM Mono', monospace; }
+
+  /* RADIO / CHECKBOX GROUPS */
+  .radio-group, .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .radio-option, .checkbox-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s;
+    background: var(--gray-100);
+  }
+  .radio-option:hover, .checkbox-option:hover {
+    border-color: var(--blue);
+    background: #f0f6ff;
+  }
+  .radio-option.selected, .checkbox-option.selected {
+    border-color: var(--blue);
+    background: #e8f0fb;
+  }
+  .radio-option input, .checkbox-option input { margin-top: 2px; flex-shrink: 0; accent-color: var(--blue); }
+  .radio-option label, .checkbox-option label {
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--gray-800);
+    margin: 0;
+    cursor: pointer;
+    line-height: 1.4;
+  }
+
+  /* ALERT BOXES */
+  .alert {
+    padding: 14px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .alert-warning { background: var(--warning-light); border-left: 4px solid var(--accent); color: var(--warning); }
+  .alert-danger { background: var(--danger-light); border-left: 4px solid var(--danger); color: var(--danger); }
+  .alert-success { background: var(--success-light); border-left: 4px solid var(--success); color: var(--success); }
+  .alert-info { background: #e8f0fb; border-left: 4px solid var(--blue); color: var(--blue); }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  /* ENGAGEMENT */
+  .engagement-box {
+    background: #f0f4f9;
+    border: 1.5px solid #c5d5e8;
+    border-radius: var(--radius);
+    padding: 18px;
+    margin-bottom: 16px;
+  }
+  .engagement-box p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--gray-800);
+  }
+
+  /* NAVIGATION BUTTONS */
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .btn {
+    padding: 12px 28px;
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary {
+    background: var(--navy);
+    color: white;
+    flex: 1;
+    justify-content: center;
+  }
+  .btn-primary:hover { background: var(--blue); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15,42,74,0.3); }
+  .btn-secondary {
+    background: var(--gray-200);
+    color: var(--gray-800);
+  }
+  .btn-secondary:hover { background: var(--gray-300); }
+  .btn-danger { background: var(--danger); color: white; flex: 1; justify-content: center; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+
+  /* SUCCESS SCREEN */
+  .success-screen {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .success-icon { font-size: 64px; margin-bottom: 16px; }
+  .success-screen h2 { font-size: 22px; color: var(--navy); margin-bottom: 12px; }
+  .success-screen p { font-size: 14px; color: var(--gray-600); line-height: 1.7; max-width: 420px; margin: 0 auto; }
+
+  /* BLOCKED SCREEN */
+  .blocked-screen {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .blocked-icon { font-size: 56px; margin-bottom: 16px; }
+  .blocked-screen h2 { font-size: 20px; color: var(--danger); margin-bottom: 12px; }
+  .blocked-screen p { font-size: 14px; color: var(--gray-600); line-height: 1.7; }
+
+  /* STEP INDICATORS */
+  .steps-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .step-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transition: all 0.3s;
+  }
+  .step-dot.active { background: var(--accent); transform: scale(1.4); }
+  .step-dot.done { background: rgba(255,255,255,0.7); }
+
+  .hidden { display: none !important; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .card { padding: 20px 16px; }
+    .header h1 { font-size: 20px; }
+    .nav-buttons { flex-direction: column-reverse; }
+    .btn-secondary { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="header-logo">🏗 Houyoux Constructions</div>
+    <h1>Enregistrement d'un travailleur</h1>
+    <p>Chantier 24_05 — Capital Construct (The Corner), Schaerbeek<br>Remplissez un formulaire par travailleur.</p>
+  </div>
+
+  <div class="progress-label" id="progressLabel">Étape 1 sur 6</div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressBar"></div>
+  </div>
+
+  <div class="steps-indicator" id="stepsIndicator"></div>
+
+  <!-- ÉTAPE 1 : EMPLOYEUR -->
+  <div class="card step" id="step1">
+    <div class="section-header">
+      <span class="section-badge">Section A</span>
+      <span class="section-title">Identification de l'employeur</span>
+    </div>
+
+    <div class="form-group">
+      <label>Nom de votre société <span class="required">★</span></label>
+      <input type="text" id="nomSociete" placeholder="Ex : GAZELA IMPRAVEL" required>
+    </div>
+
+    <div class="form-group">
+      <label>Votre donneur d'ordre sur ce chantier <span class="required">★</span></label>
+      <select id="donneurOrdre" required>
+        <option value="">— Sélectionnez —</option>
+        <option>MCV</option><option>XELLA</option><option>LAL CONSTRUCTION</option>
+        <option>PIERRET</option><option>PROTIMEX</option><option>PLAFO PINTO</option>
+        <option>CARRO-BEL</option><option>MILIOTO</option><option>31.</option>
+        <option>TEMPÉRATURE IDÉALE</option><option>BELGRANIT</option><option>MANDREOLI</option>
+        <option>ARTAN SERVICE</option><option>OPTIMA TOITURE</option><option>JMC FINITIONS</option>
+        <option>AN DOOR</option><option>HOUYOUX CONSTRUCTIONS (EG)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Votre société est-elle sous-traitante d'un autre sous-traitant ? <span class="required">★</span></label>
+      <div class="radio-group" id="stNiveauGroup">
+        <div class="radio-option" onclick="selectRadio('stNiveau','non',this)">
+          <input type="radio" name="stNiveau" id="stNon" value="non">
+          <label for="stNon">NON — je travaille directement pour le donneur d'ordre sélectionné</label>
+        </div>
+        <div class="radio-option" onclick="selectRadio('stNiveau','oui',this)">
+          <input type="radio" name="stNiveau" id="stOui" value="oui">
+          <label for="stOui">OUI — je suis sous-traitant d'un sous-traitant</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Adresse e-mail de contact <span class="required">★</span></label>
+      <input type="email" id="emailContact" placeholder="votre@email.com" required>
+      <small style="color:var(--gray-600);font-size:12px;margin-top:4px;display:block">Cette adresse recevra toutes les alertes automatiques concernant les documents.</small>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-primary" onclick="nextStep(1)">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- BLOCKED ST3 -->
+  <div class="card step hidden" id="stepBlocked">
+    <div class="blocked-screen">
+      <div class="blocked-icon">🚫</div>
+      <h2>Enregistrement impossible</h2>
+      <div class="alert alert-danger" style="text-align:left;margin:20px 0">
+        <span class="alert-icon">⛔</span>
+        <div>Votre contrat avec Houyoux Constructions n'autorise pas plus de deux niveaux de sous-traitance. Si votre société est sous-traitante d'un sous-traitant, votre enregistrement ne peut pas être traité via ce formulaire.</div>
+      </div>
+      <p>Veuillez contacter directement Houyoux Constructions :<br><strong>mangrisani@houyoux.be</strong></p>
+      <br>
+      <button class="btn btn-secondary" onclick="goBack('stepBlocked','step1')" style="margin:0 auto">← Retour</button>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 2 : TRAVAILLEUR -->
+  <div class="card step hidden" id="step2">
+    <div class="section-header">
+      <span class="section-badge">Section B</span>
+      <span class="section-title">Identification du travailleur</span>
+    </div>
+
+    <div class="form-group">
+      <label>Nom et prénom du travailleur <span class="required">★</span></label>
+      <input type="text" id="nomTravailleur" placeholder="Ex : SILVA JOAO" required>
+      <small style="color:var(--gray-600);font-size:12px;margin-top:4px;display:block">En majuscules — NOM puis PRÉNOM, tel qu'indiqué sur la carte d'identité.</small>
+    </div>
+
+    <div class="form-group">
+      <label>Nationalité <span class="required">★</span></label>
+      <select id="nationalite" required>
+        <option value="">— Sélectionnez —</option>
+        <option value="Afg">AFGHAN(E)</option>
+        <option value="Alb">ALBANAIS(E)</option>
+        <option value="Alg">ALGÉRIEN(NE)</option>
+        <option value="All">ALLEMAND(E)</option>
+        <option value="Ang">ANGOLAIS(E)</option>
+        <option value="Ban">BANGLADAIS(E)</option>
+        <option value="Bel">BELGE</option>
+        <option value="Gui">BISSAO-GUINÉEN(NE)</option>
+        <option value="Bos">BOSNIAQUE</option>
+        <option value="Bre">BRÉSILIEN(NE)</option>
+        <option value="Bri">BRITANNIQUE</option>
+        <option value="Bul">BULGARE</option>
+        <option value="Bur">BURUNDAIS(E)</option>
+        <option value="Cam">CAMEROUNAIS(E)</option>
+        <option value="Cpv">CAP-VERDIEN(NE)</option>
+        <option value="Col">COLOMBIEN(NE)</option>
+        <option value="Rdc">CONGOLAIS(E) (RDC)</option>
+        <option value="Con">CONGOLAIS(E) (BRAZZAVILLE)</option>
+        <option value="Cro">CROATE</option>
+        <option value="Dom">DOMINICAIN(E)</option>
+        <option value="Equ">ÉQUATORIEN(NE)</option>
+        <option value="Esp">ESPAGNOL(E)</option>
+        <option value="Eth">ÉTHIOPIEN(NE)</option>
+        <option value="Fra">FRANÇAIS(E)</option>
+        <option value="Gab">GABONAIS(E)</option>
+        <option value="Geo">GÉORGIEN(NE)</option>
+        <option value="Grc">GREC(QUE)</option>
+        <option value="Gin">GUINÉEN(NE)</option>
+        <option value="Hnr">HONDURIEN(NE)</option>
+        <option value="Hon">HONGROIS(E)</option>
+        <option value="Ind">INDIEN(NE)</option>
+        <option value="Ira">IRAKIEN(NE)</option>
+        <option value="Irn">IRANIEN(NE)</option>
+        <option value="Ita">ITALIEN(NE)</option>
+        <option value="Ivo">IVOIRIEN(NE)</option>
+        <option value="Ken">KENYAN(E)</option>
+        <option value="Kos">KOSOVAR(E)</option>
+        <option value="Lit">LITUANIEN(NE)</option>
+        <option value="Lux">LUXEMBOURGEOIS(E)</option>
+        <option value="Mac">MACÉDONIEN(NE)</option>
+        <option value="Mal">MALIEN(NE)</option>
+        <option value="Mar">MAROCAIN(E)</option>
+        <option value="Mau">MAURITANIEN(NE)</option>
+        <option value="Mex">MEXICAIN(E)</option>
+        <option value="Mol">MOLDAVE</option>
+        <option value="Mne">MONTÉNÉGRIN(E)</option>
+        <option value="Moz">MOZAMBICAIN(E)</option>
+        <option value="Pay">NÉERLANDAIS(E)</option>
+        <option value="Nig">NIGÉRIAN(E)</option>
+        <option value="Pak">PAKISTANAIS(E)</option>
+        <option value="Per">PÉRUVIEN(NE)</option>
+        <option value="Phi">PHILIPPIN(E)</option>
+        <option value="Pol">POLONAIS(E)</option>
+        <option value="Por">PORTUGAIS(E)</option>
+        <option value="Rou">ROUMAIN(E)</option>
+        <option value="Rwa">RWANDAIS(E)</option>
+        <option value="Sto">SANTOMÉEN(NE)</option>
+        <option value="Sen">SÉNÉGALAIS(E)</option>
+        <option value="Ser">SERBE</option>
+        <option value="Slk">SLOVAQUE</option>
+        <option value="Slo">SLOVÈNE</option>
+        <option value="Som">SOMALIEN(NE)</option>
+        <option value="Sri">SRI-LANKAIS(E)</option>
+        <option value="Syr">SYRIEN(NE)</option>
+        <option value="Tch">TCHÈQUE</option>
+        <option value="Tog">TOGOLAIS(E)</option>
+        <option value="Tun">TUNISIEN(NE)</option>
+        <option value="Tur">TURC / TURQUE</option>
+        <option value="Ukr">UKRAINIEN(NE)</option>
+        <option value="Ven">VÉNÉZUÉLIEN(NE)</option>
+        <option value="Aut">AUTRE</option>
+      </select>
+    </div>
+
+    <div class="form-group hidden" id="autreNatGroup">
+      <label>Précisez la nationalité <span class="required">★</span></label>
+      <input type="text" id="autreNat" placeholder="Ex : PHILIPPIN">
+    </div>
+
+    <div class="form-group">
+      <label>Statut du travailleur <span class="required">★</span></label>
+      <div class="radio-group" id="statutGroup">
+        <div class="radio-option" onclick="selectRadio('statut','salarie_belge',this)">
+          <input type="radio" name="statut" value="salarie_belge">
+          <label>SALARIÉ BELGE</label>
+        </div>
+        <div class="radio-option" onclick="selectRadio('statut','independant_belge',this)">
+          <input type="radio" name="statut" value="independant_belge">
+          <label>INDÉPENDANT AVEC NUMÉRO D'ENTREPRISE BELGE</label>
+        </div>
+        <div class="radio-option" onclick="selectRadio('statut','associe_actif',this)">
+          <input type="radio" name="statut" value="associe_actif">
+          <label>ASSOCIÉ ACTIF (TVA BELGE)</label>
+        </div>
+        <div class="radio-option" onclick="selectRadio('statut','detache_eu',this)">
+          <input type="radio" name="statut" value="detache_eu">
+          <label>TRAVAILLEUR DÉTACHÉ EU</label>
+        </div>
+        <div class="radio-option" onclick="selectRadio('statut','detache_hors_eu',this)">
+          <input type="radio" name="statut" value="detache_hors_eu">
+          <label>TRAVAILLEUR DÉTACHÉ HORS EU</label>
+        </div>
+        <div class="radio-option" onclick="selectRadio('statut','salarie_hors_ue',this)">
+          <input type="radio" name="statut" value="salarie_hors_ue">
+          <label>SALARIÉ HORS UE</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="prevStep(2)">← Retour</button>
+      <button class="btn btn-primary" onclick="nextStep(2)">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 3 : IDENTITÉ + SÉCURITÉ -->
+  <div class="card step hidden" id="step3">
+    <div class="section-header">
+      <span class="section-badge">Section C</span>
+      <span class="section-title">Document d'identité & Formation sécurité</span>
+    </div>
+
+    <div class="alert alert-info">
+      <span class="alert-icon">ℹ</span>
+      <div>Ces documents sont obligatoires pour <strong>tous les statuts</strong>.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Type de document d'identité <span class="required">★</span></label>
+      <select id="typeId" required>
+        <option value="">— Sélectionnez —</option>
+        <option value="CI Bel">CI Bel — Carte d'identité belge</option>
+        <option value="CI Por">CI Por — Carte d'identité portugaise</option>
+        <option value="CI Rou">CI Rou — Carte d'identité roumaine</option>
+        <option value="CI Fra">CI Fra — Carte d'identité française</option>
+        <option value="CI Esp">CI Esp — Carte d'identité espagnole</option>
+        <option value="CI Gui">CI Gui — Carte d'identité guinéenne (Bissau)</option>
+        <option value="CI Ukr">CI Ukr — Carte d'identité ukrainienne</option>
+        <option value="CI Mol">CI Mol — Carte d'identité moldave</option>
+        <option value="CI Mar">CI Mar — Carte d'identité marocaine</option>
+        <option value="CI Sto">CI Sto — Carte d'identité santoméenne</option>
+        <option value="CI Alb">CI Alb — Carte d'identité albanaise</option>
+        <option value="CI Bul">CI Bul — Carte d'identité bulgare</option>
+        <option value="CI Cro">CI Cro — Carte d'identité croate</option>
+        <option value="CI Ita">CI Ita — Carte d'identité italienne</option>
+        <option value="CI Kos">CI Kos — Carte d'identité kosovare</option>
+        <option value="CI Pol">CI Pol — Carte d'identité polonaise</option>
+        <option value="CI Ser">CI Ser — Carte d'identité serbe</option>
+        <option value="CI Slk">CI Slk — Carte d'identité slovaque</option>
+        <option value="PP Bel">PP Bel — Passeport belge</option>
+        <option value="PP Por">PP Por — Passeport portugais</option>
+        <option value="PP Rou">PP Rou — Passeport roumain</option>
+        <option value="PP Fra">PP Fra — Passeport français</option>
+        <option value="PP Bre">PP Bre — Passeport brésilien</option>
+        <option value="PP Mar">PP Mar — Passeport marocain</option>
+        <option value="PP Ind">PP Ind — Passeport indien</option>
+        <option value="PP Pak">PP Pak — Passeport pakistanais</option>
+        <option value="PP Afg">PP Afg — Passeport afghan</option>
+        <option value="PP Syr">PP Syr — Passeport syrien</option>
+        <option value="PP Aut">PP Aut — Passeport autre nationalité</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Date d'expiration du document d'identité <span class="required">★</span></label>
+      <input type="date" id="dateExpId" required>
+    </div>
+
+    <div class="form-group">
+      <label>Upload du document d'identité <span class="required">★</span></label>
+      <div class="file-upload" id="uploadId">
+        <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadId','fileNameId')">
+        <div class="file-upload-icon">📄</div>
+        <div class="file-upload-text">Cliquez ou glissez votre fichier ici<br><strong>PDF, JPG ou PNG</strong> — 10 Mo max</div>
+        <div class="file-name" id="fileNameId"></div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Formation sécurité <span class="required">★</span></label>
+      <div class="radio-group">
+        <div class="radio-option" onclick="selectRadio('securite','vca',this);showSecurite('vca')">
+          <input type="radio" name="securite" value="vca">
+          <label>Certificat VCA</label>
+        </div>
+        <div class="radio-option" onclick="selectRadio('securite','ok5ans',this);showSecurite('ok5ans')">
+          <input type="radio" name="securite" value="ok5ans">
+          <label>Attestation employeur — minimum 5 ans d'expérience sur chantier</label>
+        </div>
+        <div class="radio-option" onclick="selectRadio('securite','exemption',this);showSecurite('exemption')">
+          <input type="radio" name="securite" value="exemption">
+          <label>Exemption (cadre, technicien, etc.)</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group hidden" id="vcaDateGroup">
+      <label>Date d'expiration du VCA <span class="required">★</span></label>
+      <input type="date" id="dateVca">
+    </div>
+
+    <div class="form-group">
+      <label>Upload du justificatif de formation sécurité <span class="required">★</span></label>
+      <div class="file-upload" id="uploadSecurite">
+        <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadSecurite','fileNameSecurite')">
+        <div class="file-upload-icon">🦺</div>
+        <div class="file-upload-text">Certificat VCA, attestation ou justificatif d'exemption<br><strong>PDF, JPG ou PNG</strong></div>
+        <div class="file-name" id="fileNameSecurite"></div>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="prevStep(3)">← Retour</button>
+      <button class="btn btn-primary" onclick="nextStep(3)">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 4 : DOCUMENTS SPÉCIFIQUES SELON STATUT -->
+  <div class="card step hidden" id="step4">
+    <div class="section-header">
+      <span class="section-badge">Section D</span>
+      <span class="section-title" id="step4Title">Documents complémentaires</span>
+    </div>
+
+    <!-- Belge / Indépendant / Associé -->
+    <div id="docsBeiges">
+      <div class="form-group">
+        <label>Preuve d'affiliation CAS (Caisse d'Assurances Sociales) <span class="required">★</span></label>
+        <small style="color:var(--gray-600);font-size:12px;display:block;margin-bottom:8px">Ex : Attestation de carrière Securex, Liantis, Partena, Acerta...</small>
+        <div class="file-upload" id="uploadCAS">
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadCAS','fileNameCAS')">
+          <div class="file-upload-icon">📋</div>
+          <div class="file-upload-text"><strong>PDF, JPG ou PNG</strong></div>
+          <div class="file-name" id="fileNameCAS"></div>
+        </div>
+      </div>
+
+      <div class="form-group" id="cotisGroup">
+        <label>Preuve de paiement des cotisations (Cotis.) <span class="required">★</span></label>
+        <div class="file-upload" id="uploadCotis">
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadCotis','fileNameCotis')">
+          <div class="file-upload-icon">💰</div>
+          <div class="file-upload-text"><strong>PDF, JPG ou PNG</strong></div>
+          <div class="file-name" id="fileNameCotis"></div>
+        </div>
+      </div>
+
+      <div class="form-group" id="bceGroup">
+        <label>Extrait BCE <span class="required">★</span></label>
+        <small style="color:var(--gray-600);font-size:12px;display:block;margin-bottom:8px">Disponible sur economie.fgov.be — personne physique ou morale.</small>
+        <div class="file-upload" id="uploadBCE">
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadBCE','fileNameBCE')">
+          <div class="file-upload-icon">🏢</div>
+          <div class="file-upload-text"><strong>PDF, JPG ou PNG</strong></div>
+          <div class="file-name" id="fileNameBCE"></div>
+        </div>
+      </div>
+
+      <div class="form-group" id="statutsGroup">
+        <label>Statuts de société (Moniteur belge) <span class="required">★</span></label>
+        <div class="file-upload" id="uploadStatuts">
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadStatuts','fileNameStatuts')">
+          <div class="file-upload-icon">📜</div>
+          <div class="file-upload-text"><strong>PDF, JPG ou PNG</strong></div>
+          <div class="file-name" id="fileNameStatuts"></div>
+        </div>
+      </div>
+
+      <div class="form-group" id="partsGroup">
+        <label>Registre des parts <span class="required">★</span></label>
+        <div class="file-upload" id="uploadParts">
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadParts','fileNameParts')">
+          <div class="file-upload-icon">📊</div>
+          <div class="file-upload-text"><strong>PDF, JPG ou PNG</strong></div>
+          <div class="file-name" id="fileNameParts"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Détaché EU / Hors EU -->
+    <div id="docsDetache" class="hidden">
+      <div class="form-group">
+        <label>L1 — Attestation de détachement (Limosa) <span class="required">★</span></label>
+        <small style="color:var(--gray-600);font-size:12px;display:block;margin-bottom:8px">Durée maximale 24 mois.</small>
+        <div class="file-upload" id="uploadL1">
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadL1','fileNameL1')">
+          <div class="file-upload-icon">📄</div>
+          <div class="file-upload-text"><strong>PDF, JPG ou PNG</strong></div>
+          <div class="file-name" id="fileNameL1"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Date d'expiration du L1 <span class="required">★</span></label>
+        <input type="date" id="dateL1">
+      </div>
+      <div class="form-group">
+        <label>A1 — Attestation de couverture sociale <span class="required">★</span></label>
+        <div class="file-upload" id="uploadA1">
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadA1','fileNameA1')">
+          <div class="file-upload-icon">🛡</div>
+          <div class="file-upload-text"><strong>PDF, JPG ou PNG</strong></div>
+          <div class="file-name" id="fileNameA1"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Date d'expiration du A1 <span class="required">★</span></label>
+        <input type="date" id="dateA1">
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="prevStep(4)">← Retour</button>
+      <button class="btn btn-primary" onclick="nextStep(4)">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 5 : DOCUMENT DE SÉJOUR -->
+  <div class="card step hidden" id="step5">
+    <div class="section-header">
+      <span class="section-badge">Section E</span>
+      <span class="section-title">Document de séjour</span>
+    </div>
+
+    <div class="form-group">
+      <label>Possédez-vous un document de séjour valide ? <span class="required">★</span></label>
+      <div class="radio-group">
+        <div class="radio-option" onclick="selectRadio('sejour','oui',this);toggleSejour('oui')">
+          <input type="radio" name="sejour" value="oui">
+          <label>OUI — je dispose d'un document de séjour valide</label>
+        </div>
+        <div class="radio-option" onclick="selectRadio('sejour','rdv',this);toggleSejour('rdv')">
+          <input type="radio" name="sejour" value="rdv">
+          <label>NON — j'ai un rendez-vous en commune pour l'obtenir</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden" id="sejourDocGroup">
+      <div class="form-group">
+        <label>Type de document de séjour <span class="required">★</span></label>
+        <select id="typeSeiour">
+          <option value="">— Sélectionnez —</option>
+          <option>ANN3TER — Annexe 3ter (séjour &lt; 3 mois)</option>
+          <option>ANN19 — Annexe 19 (séjour &gt; 3 mois et &lt; 6 mois)</option>
+          <option>ANN8TER — Annexe 8ter (séjour &gt; 3 mois et &lt; 5 ans)</option>
+          <option>CARTE EU — Carte EU/EU+ (séjour &gt; 5 ans)</option>
+          <option>ANN49 — Annexe 49 (hors EU — &gt; 4,5 mois)</option>
+          <option>ANN4647 — Annexe 46/47 (hors EU)</option>
+          <option>VISA — Visa C ou D</option>
+          <option>CARTE A — Carte type A</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Date d'expiration du document de séjour <span class="required">★</span></label>
+        <input type="date" id="dateSeiour">
+      </div>
+      <div class="form-group">
+        <label>Upload du document de séjour <span class="required">★</span></label>
+        <div class="file-upload" id="uploadSeiour">
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadSeiour','fileNameSeiour')">
+          <div class="file-upload-icon">🪪</div>
+          <div class="file-upload-text"><strong>PDF, JPG ou PNG</strong></div>
+          <div class="file-name" id="fileNameSeiour"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden" id="sejourRdvGroup">
+      <div class="alert alert-warning">
+        <span class="alert-icon">⚠</span>
+        <div>La preuve de RDV est acceptée provisoirement. Vous aurez <strong>5 jours ouvrables</strong> après la date du RDV pour fournir l'annexe obtenue. Une alerte vous sera envoyée automatiquement la veille du RDV.</div>
+      </div>
+      <div class="form-group">
+        <label>Date du rendez-vous en commune <span class="required">★</span></label>
+        <input type="date" id="dateRdv">
+      </div>
+      <div class="form-group">
+        <label>Upload de la preuve de RDV <span class="required">★</span></label>
+        <div class="file-upload" id="uploadRdv">
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadRdv','fileNameRdv')">
+          <div class="file-upload-icon">📅</div>
+          <div class="file-upload-text">Confirmation de rendez-vous en commune<br><strong>PDF, JPG ou PNG</strong></div>
+          <div class="file-name" id="fileNameRdv"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="prevStep(5)">← Retour</button>
+      <button class="btn btn-primary" onclick="nextStep(5)">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 6 : ENGAGEMENT + RÉCAPITULATIF -->
+  <div class="card step hidden" id="step6">
+    <div class="section-header">
+      <span class="section-badge">Section F</span>
+      <span class="section-title">Engagement contractuel & Récapitulatif</span>
+    </div>
+
+    <div class="alert alert-warning">
+      <span class="alert-icon">⚠</span>
+      <div><strong>Important :</strong> Le QR code de pointage présent sur le chantier est un outil de gestion interne uniquement. Il ne remplace <strong>en aucun cas</strong> vos obligations légales de déclaration ONSS ni l'enregistrement de vos travailleurs via Checkin@work (CIAW). Ces démarches restent entièrement à votre charge.</div>
+    </div>
+
+    <div class="engagement-box">
+      <p>Je soussigné(e), représentant(e) de la société indiquée dans ce formulaire, <strong>certifie que les documents fournis sont authentiques</strong>, que les dates de validité indiquées sont exactes, et que toutes les informations renseignées sont conformes à la réalité.</p>
+      <br>
+      <p>Je reconnais être seul(e) responsable en cas de document falsifié ou de date erronée, et j'accepte que <strong>Houyoux Constructions se réserve le droit de facturer une amende forfaitaire</strong> par document non conforme, sans préjudice des poursuites légales applicables.</p>
+    </div>
+
+    <div class="form-group">
+      <div class="checkbox-option" id="engagementOption" onclick="toggleEngagement(this)">
+        <input type="checkbox" id="engagement">
+        <label for="engagement">Je certifie l'exactitude de toutes les informations et documents fournis dans ce formulaire. Je comprends et accepte les conditions ci-dessus. <span class="required">★</span></label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Commentaires ou informations complémentaires</label>
+      <textarea id="commentaires" rows="3" placeholder="Situation particulière, document en cours de renouvellement..." style="resize:vertical"></textarea>
+    </div>
+
+    <div class="alert alert-info" id="recapitulatif">
+      <span class="alert-icon">📋</span>
+      <div id="recapContent">Récapitulatif de votre enregistrement...</div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="prevStep(6)">← Retour</button>
+      <button class="btn btn-primary" id="submitBtn" onclick="submitForm()" disabled>Soumettre l'enregistrement ✓</button>
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="card step hidden" id="stepSuccess">
+    <div class="success-screen">
+      <div class="success-icon">✅</div>
+      <h2>Enregistrement reçu avec succès !</h2>
+      <p>Votre enregistrement a bien été reçu. Vos documents seront vérifiés sous <strong>24h ouvrables</strong>. Vous recevrez un e-mail de confirmation ou d'alerte à l'adresse indiquée dans le formulaire.</p>
+      <br>
+      <p style="font-size:13px;color:var(--gray-600)">Le lien de pointage du travailleur vous sera envoyé par e-mail dès validation de tous les documents.</p>
+      <br>
+      <button class="btn btn-primary" style="margin:0 auto" onclick="resetForm()">Enregistrer un autre travailleur +</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let currentStep = 1;
+  const totalSteps = 6;
+  const statut = () => document.querySelector('input[name="statut"]:checked')?.value;
+
+  // Init steps indicator
+  function initSteps() {
+    const ind = document.getElementById('stepsIndicator');
+    ind.innerHTML = '';
+    for (let i = 1; i <= totalSteps; i++) {
+      const d = document.createElement('div');
+      d.className = 'step-dot' + (i === 1 ? ' active' : '');
+      d.id = 'dot' + i;
+      ind.appendChild(d);
+    }
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const pct = ((currentStep - 1) / totalSteps) * 100;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = `Étape ${currentStep} sur ${totalSteps}`;
+    for (let i = 1; i <= totalSteps; i++) {
+      const d = document.getElementById('dot' + i);
+      if (!d) continue;
+      d.className = 'step-dot' + (i === currentStep ? ' active' : i < currentStep ? ' done' : '');
+    }
+  }
+
+  function showStep(n) {
+    document.querySelectorAll('.step').forEach(s => s.classList.add('hidden'));
+    const el = document.getElementById('step' + n);
+    if (el) { el.classList.remove('hidden'); currentStep = n; updateProgress(); }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function selectRadio(name, value, el) {
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+      r.checked = false;
+      r.closest('.radio-option').classList.remove('selected');
+    });
+    el.querySelector('input').checked = true;
+    el.classList.add('selected');
+  }
+
+  function toggleEngagement(el) {
+    const cb = document.getElementById('engagement');
+    cb.checked = !cb.checked;
+    el.classList.toggle('selected', cb.checked);
+    document.getElementById('submitBtn').disabled = !cb.checked;
+  }
+
+  function handleFile(input, uploadId, nameId) {
+    const file = input.files[0];
+    if (file) {
+      document.getElementById(uploadId).classList.add('has-file');
+      document.getElementById(nameId).textContent = '✓ ' + file.name;
+    }
+  }
+
+  function showSecurite(type) {
+    const vca = document.getElementById('vcaDateGroup');
+    vca.classList.toggle('hidden', type !== 'vca');
+  }
+
+  function toggleSejour(type) {
+    document.getElementById('sejourDocGroup').classList.toggle('hidden', type !== 'oui');
+    document.getElementById('sejourRdvGroup').classList.toggle('hidden', type !== 'rdv');
+  }
+
+  function nextStep(from) {
+    if (from === 1) {
+      const nom = document.getElementById('nomSociete').value.trim();
+      const don = document.getElementById('donneurOrdre').value;
+      const stN = document.querySelector('input[name="stNiveau"]:checked')?.value;
+      const email = document.getElementById('emailContact').value.trim();
+      if (!nom || !don || !stN || !email) { alert('Veuillez compléter tous les champs obligatoires.'); return; }
+      if (stN === 'oui') { showStep('Blocked'); return; }
+      showStep(2);
+    } else if (from === 2) {
+      const nom = document.getElementById('nomTravailleur').value.trim();
+      const nat = document.getElementById('nationalite').value;
+      const st = statut();
+      if (!nom || !nat || !st) { alert('Veuillez compléter tous les champs obligatoires.'); return; }
+      prepareStep4();
+      showStep(3);
+    } else if (from === 3) {
+      const typeId = document.getElementById('typeId').value;
+      const dateId = document.getElementById('dateExpId').value;
+      const sec = document.querySelector('input[name="securite"]:checked')?.value;
+      if (!typeId || !dateId || !sec) { alert('Veuillez compléter tous les champs obligatoires.'); return; }
+      // Vérification date expirée
+      if (new Date(dateId) < new Date()) { alert('⚠ La date d\'expiration du document d\'identité est dépassée. Veuillez fournir un document valide.'); return; }
+      const st = statut();
+      if (['detache_eu','detache_hors_eu','salarie_hors_ue'].includes(st)) {
+        showStep(4);
+      } else if (['salarie_belge','independant_belge','associe_actif'].includes(st)) {
+        showStep(4);
+      } else {
+        showStep(6);
+      }
+    } else if (from === 4) {
+      const st = statut();
+      if (['detache_eu','detache_hors_eu','salarie_hors_ue'].includes(st)) {
+        showStep(5);
+      } else {
+        buildRecap();
+        showStep(6);
+      }
+    } else if (from === 5) {
+      buildRecap();
+      showStep(6);
+    }
+  }
+
+  function prevStep(from) {
+    if (from === 2) showStep(1);
+    else if (from === 3) showStep(2);
+    else if (from === 4) showStep(3);
+    else if (from === 5) showStep(4);
+    else if (from === 6) {
+      const st = statut();
+      if (['detache_eu','detache_hors_eu','salarie_hors_ue'].includes(st)) showStep(5);
+      else showStep(4);
+    }
+  }
+
+  function goBack(fromId, toId) {
+    document.getElementById(fromId).classList.add('hidden');
+    document.getElementById(toId).classList.remove('hidden');
+  }
+
+  function prepareStep4() {
+    const st = statut();
+    const belge = document.getElementById('docsBeiges');
+    const detache = document.getElementById('docsDetache');
+    const title = document.getElementById('step4Title');
+    const cotis = document.getElementById('cotisGroup');
+    const statuts = document.getElementById('statutsGroup');
+    const parts = document.getElementById('partsGroup');
+
+    belge.classList.add('hidden');
+    detache.classList.add('hidden');
+
+    if (st === 'salarie_belge') {
+      title.textContent = 'Documents — Salarié belge';
+      belge.classList.remove('hidden');
+      cotis.classList.add('hidden'); statuts.classList.add('hidden'); parts.classList.add('hidden');
+    } else if (st === 'independant_belge') {
+      title.textContent = 'Documents — Indépendant belge';
+      belge.classList.remove('hidden');
+      cotis.classList.remove('hidden'); statuts.classList.add('hidden'); parts.classList.add('hidden');
+    } else if (st === 'associe_actif') {
+      title.textContent = 'Documents — Associé actif';
+      belge.classList.remove('hidden');
+      cotis.classList.remove('hidden'); statuts.classList.remove('hidden'); parts.classList.remove('hidden');
+    } else if (['detache_eu','detache_hors_eu'].includes(st)) {
+      title.textContent = 'Documents — Détachement (L1 & A1)';
+      detache.classList.remove('hidden');
+    } else if (st === 'salarie_hors_ue') {
+      title.textContent = 'Documents de séjour';
+      // Pas de docs détachement pour hors UE — aller direct step5
+    }
+  }
+
+  function buildRecap() {
+    const nom = document.getElementById('nomTravailleur').value;
+    const soc = document.getElementById('nomSociete').value;
+    const nat = document.getElementById('nationalite').options[document.getElementById('nationalite').selectedIndex]?.text || '';
+    const st = document.querySelector('input[name="statut"]:checked')?.value || '';
+    const statutLabel = {
+      salarie_belge: 'Salarié belge', independant_belge: 'Indépendant belge',
+      associe_actif: 'Associé actif', detache_eu: 'Travailleur détaché EU',
+      detache_hors_eu: 'Travailleur détaché hors EU', salarie_hors_ue: 'Salarié hors UE'
+    }[st] || st;
+    document.getElementById('recapContent').innerHTML =
+      `<strong>Travailleur :</strong> ${nom}<br>` +
+      `<strong>Société :</strong> ${soc}<br>` +
+      `<strong>Nationalité :</strong> ${nat}<br>` +
+      `<strong>Statut :</strong> ${statutLabel}`;
+  }
+
+  function submitForm() {
+    if (!document.getElementById('engagement').checked) { alert('Veuillez cocher la case d\'engagement.'); return; }
+    // Ici Power Automate recevra les données via le connecteur Forms/SharePoint
+    document.querySelectorAll('.step').forEach(s => s.classList.add('hidden'));
+    document.getElementById('stepSuccess').classList.remove('hidden');
+    document.getElementById('progressBar').style.width = '100%';
+    document.getElementById('progressLabel').textContent = 'Enregistrement complété ✓';
+  }
+
+  function resetForm() {
+    document.querySelectorAll('input[type=text], input[type=email], input[type=date], select, textarea').forEach(el => el.value = '');
+    document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach(el => el.checked = false);
+    document.querySelectorAll('.radio-option, .checkbox-option').forEach(el => el.classList.remove('selected'));
+    document.querySelectorAll('.file-upload').forEach(el => el.classList.remove('has-file'));
+    document.querySelectorAll('.file-name').forEach(el => el.textContent = '');
+    document.getElementById('submitBtn').disabled = true;
+    currentStep = 1;
+    initSteps();
+    showStep(1);
+  }
+
+  // Nationalité "AUTRE"
+  document.getElementById('nationalite').addEventListener('change', function() {
+    const g = document.getElementById('autreNatGroup');
+    g.classList.toggle('hidden', this.value !== 'Aut');
+  });
+
+  initSteps();
+</script>
+</body>
+</html>
