@@ -633,10 +633,7 @@
           <input type="radio" name="securite" value="ok5ans">
           <label>Attestation employeur — minimum 5 ans d'expérience sur chantier</label>
         </div>
-        <div class="radio-option" onclick="selectRadio('securite','exemption',this);showSecurite('exemption')">
-          <input type="radio" name="securite" value="exemption">
-          <label>Exemption (cadre, technicien, etc.)</label>
-        </div>
+
       </div>
     </div>
 
@@ -983,7 +980,11 @@
       const typeId = document.getElementById('typeId').value;
       const dateId = document.getElementById('dateExpId').value;
       const sec = document.querySelector('input[name="securite"]:checked')?.value;
+      const fileId = document.getElementById('uploadId').classList.contains('has-file');
+      const fileSecurite = document.getElementById('uploadSecurite').classList.contains('has-file');
       if (!typeId || !dateId || !sec) { alert('Veuillez compléter tous les champs obligatoires.'); return; }
+      if (!fileId) { alert('⚠ Veuillez joindre le document d\'identité.'); return; }
+      if (!fileSecurite) { alert('⚠ Veuillez joindre le justificatif de formation sécurité.'); return; }
       // Vérification date expirée
       if (new Date(dateId) < new Date()) { alert('⚠ La date d\'expiration du document d\'identité est dépassée. Veuillez fournir un document valide.'); return; }
       const st = statut();
@@ -996,6 +997,33 @@
       }
     } else if (from === 4) {
       const st = statut();
+      if (st === 'salarie_belge') {
+        const fileCAS = document.getElementById('uploadCAS').classList.contains('has-file');
+        if (!fileCAS) { alert('⚠ Veuillez joindre la preuve d\'affiliation CAS.'); return; }
+      } else if (st === 'independant_belge') {
+        const fileCAS = document.getElementById('uploadCAS').classList.contains('has-file');
+        const fileCotis = document.getElementById('uploadCotis').classList.contains('has-file');
+        const fileBCE = document.getElementById('uploadBCE').classList.contains('has-file');
+        if (!fileCAS) { alert('⚠ Veuillez joindre la preuve d\'affiliation CAS.'); return; }
+        if (!fileCotis) { alert('⚠ Veuillez joindre la preuve de paiement des cotisations.'); return; }
+        if (!fileBCE) { alert('⚠ Veuillez joindre l\'extrait BCE.'); return; }
+      } else if (st === 'associe_actif') {
+        const fileCAS = document.getElementById('uploadCAS').classList.contains('has-file');
+        const fileBCE = document.getElementById('uploadBCE').classList.contains('has-file');
+        const fileStatuts = document.getElementById('uploadStatuts').classList.contains('has-file');
+        const fileParts = document.getElementById('uploadParts').classList.contains('has-file');
+        if (!fileCAS) { alert('⚠ Veuillez joindre la preuve d\'affiliation CAS.'); return; }
+        if (!fileBCE) { alert('⚠ Veuillez joindre l\'extrait BCE.'); return; }
+        if (!fileStatuts) { alert('⚠ Veuillez joindre les statuts de société.'); return; }
+        if (!fileParts) { alert('⚠ Veuillez joindre le registre des parts.'); return; }
+      } else if (['detache_eu','detache_hors_eu','salarie_hors_ue'].includes(st)) {
+        const dateL1 = document.getElementById('dateL1').value;
+        const dateA1 = document.getElementById('dateA1').value;
+        const fileL1 = document.getElementById('uploadL1').classList.contains('has-file');
+        const fileA1 = document.getElementById('uploadA1').classList.contains('has-file');
+        if (!fileL1 || !dateL1) { alert('⚠ Veuillez joindre le L1 (Limosa) et sa date d\'expiration.'); return; }
+        if (!fileA1 || !dateA1) { alert('⚠ Veuillez joindre le A1 et sa date d\'expiration.'); return; }
+      }
       if (['detache_eu','detache_hors_eu','salarie_hors_ue'].includes(st)) {
         showStep(5);
       } else {
@@ -1003,6 +1031,20 @@
         showStep(6);
       }
     } else if (from === 5) {
+      const sejourType = document.querySelector('input[name="sejour"]:checked')?.value;
+      if (!sejourType) { alert('⚠ Veuillez indiquer votre situation concernant le document de séjour.'); return; }
+      if (sejourType === 'oui') {
+        const typeSej = document.getElementById('typeSeiour').value;
+        const dateSej = document.getElementById('dateSeiour').value;
+        const fileSej = document.getElementById('uploadSeiour').classList.contains('has-file');
+        if (!typeSej || !dateSej) { alert('⚠ Veuillez indiquer le type et la date d\'expiration du document de séjour.'); return; }
+        if (!fileSej) { alert('⚠ Veuillez joindre le document de séjour.'); return; }
+      } else if (sejourType === 'rdv') {
+        const dateRdv = document.getElementById('dateRdv').value;
+        const fileRdv = document.getElementById('uploadRdv').classList.contains('has-file');
+        if (!dateRdv) { alert('⚠ Veuillez indiquer la date du rendez-vous en commune.'); return; }
+        if (!fileRdv) { alert('⚠ Veuillez joindre la preuve de rendez-vous.'); return; }
+      }
       buildRecap();
       showStep(6);
     }
@@ -1053,8 +1095,8 @@
       title.textContent = 'Documents — Détachement (L1 & A1)';
       detache.classList.remove('hidden');
     } else if (st === 'salarie_hors_ue') {
-      title.textContent = 'Documents de séjour';
-      // Pas de docs détachement pour hors UE — aller direct step5
+      title.textContent = 'Documents — Salarié hors UE (L1 & A1)';
+      detache.classList.remove('hidden');
     }
   }
 
