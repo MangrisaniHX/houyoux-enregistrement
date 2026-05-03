@@ -7,183 +7,122 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #0f2a4a;
-    --blue: #1a4a7a;
-    --accent: #e8a020;
-    --accent-light: #fdf3e0;
-    --success: #1a7a3a;
-    --success-light: #e8f5ed;
-    --danger: #c00000;
-    --danger-light: #fde8e8;
-    --warning: #7d5a00;
-    --warning-light: #fff9e6;
-    --gray-100: #f8f9fa;
-    --gray-200: #e9ecef;
-    --gray-300: #dee2e6;
-    --gray-600: #6c757d;
-    --gray-800: #343a40;
-    --white: #ffffff;
-    --shadow: 0 2px 16px rgba(15,42,74,0.10);
-    --shadow-lg: 0 8px 40px rgba(15,42,74,0.16);
-    --radius: 10px;
-    --radius-sm: 6px;
+    --navy: #0f2a4a; --blue: #1a4a7a; --accent: #e8a020; --accent-light: #fdf3e0;
+    --success: #1a7a3a; --success-light: #e8f5ed; --danger: #c00000; --danger-light: #fde8e8;
+    --warning: #7d5a00; --warning-light: #fff9e6;
+    --gray-100: #f8f9fa; --gray-200: #e9ecef; --gray-300: #dee2e6;
+    --gray-600: #6c757d; --gray-800: #343a40; --white: #ffffff;
+    --shadow-lg: 0 8px 40px rgba(15,42,74,0.16); --radius: 10px; --radius-sm: 6px;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: linear-gradient(135deg, #0f2a4a 0%, #1a4a7a 50%, #0f2a4a 100%);
-    min-height: 100vh;
-    padding: 24px 16px 60px;
-    color: var(--gray-800);
+  body { font-family: 'DM Sans', sans-serif; background: linear-gradient(135deg,#0f2a4a 0%,#1a4a7a 50%,#0f2a4a 100%); min-height:100vh; padding:24px 16px 60px; color:var(--gray-800); }
+  .container { max-width:780px; margin:0 auto; }
+  .header { text-align:center; margin-bottom:28px; color:white; }
+  .header-logo { font-size:13px; font-weight:500; letter-spacing:3px; text-transform:uppercase; opacity:0.7; margin-bottom:8px; }
+  .header h1 { font-size:26px; font-weight:700; margin-bottom:8px; line-height:1.3; }
+  .header p { font-size:14px; opacity:0.75; max-width:520px; margin:0 auto; line-height:1.6; }
+  .progress-bar-wrap { background:rgba(255,255,255,0.15); border-radius:100px; height:6px; margin-bottom:28px; overflow:hidden; }
+  .progress-bar-fill { height:100%; background:var(--accent); border-radius:100px; transition:width 0.4s ease; width:0%; }
+  .progress-label { text-align:center; color:rgba(255,255,255,0.6); font-size:12px; margin-bottom:8px; font-family:'DM Mono',monospace; }
+  .card { background:var(--white); border-radius:16px; padding:32px; box-shadow:var(--shadow-lg); margin-bottom:16px; }
+  .section-header { display:flex; align-items:center; gap:12px; margin-bottom:24px; padding-bottom:16px; border-bottom:2px solid var(--gray-200); }
+  .section-badge { background:var(--navy); color:white; font-size:11px; font-weight:600; letter-spacing:1.5px; padding:4px 10px; border-radius:100px; text-transform:uppercase; white-space:nowrap; }
+  .section-title { font-size:16px; font-weight:600; color:var(--navy); }
+  .form-group { margin-bottom:20px; }
+  label { display:block; font-size:14px; font-weight:600; color:var(--navy); margin-bottom:8px; }
+  label .required { color:var(--danger); margin-left:3px; }
+  input[type="text"],input[type="email"],input[type="date"],select,textarea {
+    width:100%; padding:11px 14px; border:1.5px solid var(--gray-300); border-radius:var(--radius-sm);
+    font-family:'DM Sans',sans-serif; font-size:14px; color:var(--gray-800); background:var(--white);
+    transition:border-color 0.2s,box-shadow 0.2s; appearance:none;
   }
-
-  .container { max-width: 780px; margin: 0 auto; }
-
-  .header { text-align: center; margin-bottom: 28px; color: white; }
-  .header-logo { font-size: 13px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; opacity: 0.7; margin-bottom: 8px; }
-  .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
-  .header p { font-size: 14px; opacity: 0.75; max-width: 520px; margin: 0 auto; line-height: 1.6; }
-
-  .progress-bar-wrap { background: rgba(255,255,255,0.15); border-radius: 100px; height: 6px; margin-bottom: 28px; overflow: hidden; }
-  .progress-bar-fill { height: 100%; background: var(--accent); border-radius: 100px; transition: width 0.4s ease; width: 0%; }
-  .progress-label { text-align: center; color: rgba(255,255,255,0.6); font-size: 12px; margin-bottom: 8px; font-family: 'DM Mono', monospace; }
-
-  .card { background: var(--white); border-radius: 16px; padding: 32px; box-shadow: var(--shadow-lg); margin-bottom: 16px; }
-
-  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid var(--gray-200); }
-  .section-badge { background: var(--navy); color: white; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; padding: 4px 10px; border-radius: 100px; text-transform: uppercase; white-space: nowrap; }
-  .section-title { font-size: 16px; font-weight: 600; color: var(--navy); }
-
-  .form-group { margin-bottom: 20px; }
-  .form-group:last-child { margin-bottom: 0; }
-
-  label { display: block; font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
-  label .required { color: var(--danger); margin-left: 3px; }
-
-  input[type="text"], input[type="email"], input[type="date"], select, textarea {
-    width: 100%; padding: 11px 14px; border: 1.5px solid var(--gray-300); border-radius: var(--radius-sm);
-    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--gray-800); background: var(--white);
-    transition: border-color 0.2s, box-shadow 0.2s; appearance: none;
-  }
-  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,74,122,0.12); }
-  input.error, select.error { border-color: var(--danger); }
-
+  input:focus,select:focus,textarea:focus { outline:none; border-color:var(--blue); box-shadow:0 0 0 3px rgba(26,74,122,0.12); }
   select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236c757d' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236c757d' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 14px center; padding-right:36px; cursor:pointer;
   }
-
-  /* ST2 SELECTOR */
-  .st2-wrap { display: flex; gap: 10px; align-items: flex-start; }
-  .st2-wrap select { flex: 1; }
-  .btn-add-st2 {
-    padding: 11px 14px; background: var(--accent); color: var(--navy); border: none; border-radius: var(--radius-sm);
-    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap;
-    transition: background 0.2s; flex-shrink: 0;
-  }
-  .btn-add-st2:hover { background: #d4911a; }
-
-  .file-upload {
-    border: 2px dashed var(--gray-300); border-radius: var(--radius); padding: 20px; text-align: center;
-    cursor: pointer; transition: all 0.2s; background: var(--gray-100); position: relative;
-  }
-  .file-upload:hover { border-color: var(--blue); background: #f0f6ff; }
-  .file-upload.has-file { border-color: var(--success); background: var(--success-light); }
-  .file-upload input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-  .file-upload-icon { font-size: 28px; margin-bottom: 8px; }
-  .file-upload-text { font-size: 13px; color: var(--gray-600); }
-  .file-upload-text strong { color: var(--blue); }
-  .file-name { font-size: 12px; color: var(--success); font-weight: 600; margin-top: 6px; font-family: 'DM Mono', monospace; }
-
-  .radio-group, .checkbox-group { display: flex; flex-direction: column; gap: 8px; }
-  .radio-option, .checkbox-option {
-    display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px;
-    border: 1.5px solid var(--gray-200); border-radius: var(--radius-sm); cursor: pointer;
-    transition: all 0.15s; background: var(--gray-100);
-  }
-  .radio-option:hover, .checkbox-option:hover { border-color: var(--blue); background: #f0f6ff; }
-  .radio-option.selected, .checkbox-option.selected { border-color: var(--blue); background: #e8f0fb; }
-  .radio-option input, .checkbox-option input { margin-top: 2px; flex-shrink: 0; accent-color: var(--blue); }
-  .radio-option label, .checkbox-option label { font-weight: 400; font-size: 14px; color: var(--gray-800); margin: 0; cursor: pointer; line-height: 1.4; }
-
-  .alert {
-    padding: 14px 16px; border-radius: var(--radius-sm); font-size: 13px; line-height: 1.6;
-    margin-bottom: 16px; display: flex; gap: 10px; align-items: flex-start;
-  }
-  .alert-warning { background: var(--warning-light); border-left: 4px solid var(--accent); color: var(--warning); }
-  .alert-danger { background: var(--danger-light); border-left: 4px solid var(--danger); color: var(--danger); }
-  .alert-success { background: var(--success-light); border-left: 4px solid var(--success); color: var(--success); }
-  .alert-info { background: #e8f0fb; border-left: 4px solid var(--blue); color: var(--blue); }
-  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-
-  .engagement-box { background: #f0f4f9; border: 1.5px solid #c5d5e8; border-radius: var(--radius); padding: 18px; margin-bottom: 16px; }
-  .engagement-box p { font-size: 13px; line-height: 1.7; color: var(--gray-800); }
-
-  .nav-buttons { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
-  .btn {
-    padding: 12px 28px; border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif;
-    font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .btn-primary { background: var(--navy); color: white; flex: 1; justify-content: center; }
-  .btn-primary:hover { background: var(--blue); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15,42,74,0.3); }
-  .btn-secondary { background: var(--gray-200); color: var(--gray-800); }
-  .btn-secondary:hover { background: var(--gray-300); }
-  .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
-
-  .success-screen { text-align: center; padding: 40px 20px; }
-  .success-icon { font-size: 64px; margin-bottom: 16px; }
-  .success-screen h2 { font-size: 22px; color: var(--navy); margin-bottom: 12px; }
-  .success-screen p { font-size: 14px; color: var(--gray-600); line-height: 1.7; max-width: 420px; margin: 0 auto; }
-
-  .blocked-screen { text-align: center; padding: 40px 20px; }
-  .blocked-icon { font-size: 56px; margin-bottom: 16px; }
-  .blocked-screen h2 { font-size: 20px; color: var(--danger); margin-bottom: 12px; }
-  .blocked-screen p { font-size: 14px; color: var(--gray-600); line-height: 1.7; }
-
-  .steps-indicator { display: flex; justify-content: center; gap: 6px; margin-bottom: 20px; }
-  .step-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); transition: all 0.3s; }
-  .step-dot.active { background: var(--accent); transform: scale(1.4); }
-  .step-dot.done { background: rgba(255,255,255,0.7); }
-
-  /* MODAL */
-  .modal-overlay {
-    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-    z-index: 1000; align-items: center; justify-content: center; padding: 20px;
-  }
-  .modal-overlay.open { display: flex; }
-  .modal { background: white; border-radius: 16px; padding: 28px; max-width: 480px; width: 100%; box-shadow: var(--shadow-lg); }
-  .modal h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 16px; }
-  .modal-buttons { display: flex; gap: 10px; margin-top: 20px; }
-
-  .hidden { display: none !important; }
-
-  @media (max-width: 600px) {
-    .card { padding: 20px 16px; }
-    .header h1 { font-size: 20px; }
-    .nav-buttons { flex-direction: column-reverse; }
-    .btn-secondary { justify-content: center; }
-    .st2-wrap { flex-direction: column; }
-    .btn-add-st2 { width: 100%; }
+  /* Date row */
+  .date-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .date-computed { background:var(--gray-100); border:1.5px solid var(--gray-200); border-radius:var(--radius-sm); padding:11px 14px; font-size:14px; color:var(--gray-600); font-family:'DM Mono',monospace; }
+  .date-computed.alert-date { background:var(--danger-light); border-color:var(--danger); color:var(--danger); font-weight:600; }
+  .date-computed.warn-date { background:var(--warning-light); border-color:var(--accent); color:var(--warning); font-weight:600; }
+  /* ST2 */
+  .st2-wrap { display:flex; gap:10px; align-items:flex-start; }
+  .st2-wrap select { flex:1; }
+  .btn-add-st2 { padding:11px 14px; background:var(--accent); color:var(--navy); border:none; border-radius:var(--radius-sm); font-family:'DM Sans',sans-serif; font-size:13px; font-weight:700; cursor:pointer; white-space:nowrap; transition:background 0.2s; flex-shrink:0; }
+  .btn-add-st2:hover { background:#d4911a; }
+  /* File upload */
+  .file-upload { border:2px dashed var(--gray-300); border-radius:var(--radius); padding:20px; text-align:center; cursor:pointer; transition:all 0.2s; background:var(--gray-100); position:relative; }
+  .file-upload:hover { border-color:var(--blue); background:#f0f6ff; }
+  .file-upload.has-file { border-color:var(--success); background:var(--success-light); }
+  .file-upload input[type="file"] { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; }
+  .file-upload-icon { font-size:28px; margin-bottom:8px; }
+  .file-upload-text { font-size:13px; color:var(--gray-600); }
+  .file-upload-text strong { color:var(--blue); }
+  .file-name { font-size:12px; color:var(--success); font-weight:600; margin-top:6px; font-family:'DM Mono',monospace; }
+  /* Radio/Checkbox */
+  .radio-group,.checkbox-group { display:flex; flex-direction:column; gap:8px; }
+  .radio-option,.checkbox-option { display:flex; align-items:flex-start; gap:10px; padding:10px 14px; border:1.5px solid var(--gray-200); border-radius:var(--radius-sm); cursor:pointer; transition:all 0.15s; background:var(--gray-100); }
+  .radio-option:hover,.checkbox-option:hover { border-color:var(--blue); background:#f0f6ff; }
+  .radio-option.selected,.checkbox-option.selected { border-color:var(--blue); background:#e8f0fb; }
+  .radio-option input,.checkbox-option input { margin-top:2px; flex-shrink:0; accent-color:var(--blue); }
+  .radio-option label,.checkbox-option label { font-weight:400; font-size:14px; color:var(--gray-800); margin:0; cursor:pointer; line-height:1.4; }
+  /* Alerts */
+  .alert { padding:14px 16px; border-radius:var(--radius-sm); font-size:13px; line-height:1.6; margin-bottom:16px; display:flex; gap:10px; align-items:flex-start; }
+  .alert-warning { background:var(--warning-light); border-left:4px solid var(--accent); color:var(--warning); }
+  .alert-danger { background:var(--danger-light); border-left:4px solid var(--danger); color:var(--danger); }
+  .alert-info { background:#e8f0fb; border-left:4px solid var(--blue); color:var(--blue); }
+  .alert-icon { font-size:16px; flex-shrink:0; margin-top:1px; }
+  /* Engagement */
+  .engagement-box { background:#f0f4f9; border:1.5px solid #c5d5e8; border-radius:var(--radius); padding:18px; margin-bottom:16px; }
+  .engagement-box p { font-size:13px; line-height:1.7; color:var(--gray-800); }
+  /* Buttons */
+  .nav-buttons { display:flex; justify-content:space-between; gap:12px; margin-top:24px; }
+  .btn { padding:12px 28px; border-radius:var(--radius-sm); font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer; border:none; transition:all 0.2s; display:flex; align-items:center; gap:8px; }
+  .btn-primary { background:var(--navy); color:white; flex:1; justify-content:center; }
+  .btn-primary:hover { background:var(--blue); transform:translateY(-1px); box-shadow:0 4px 12px rgba(15,42,74,0.3); }
+  .btn-secondary { background:var(--gray-200); color:var(--gray-800); }
+  .btn-secondary:hover { background:var(--gray-300); }
+  .btn:disabled { opacity:0.5; cursor:not-allowed; transform:none !important; }
+  /* Screens */
+  .success-screen { text-align:center; padding:40px 20px; }
+  .success-icon { font-size:64px; margin-bottom:16px; }
+  .success-screen h2 { font-size:22px; color:var(--navy); margin-bottom:12px; }
+  .success-screen p { font-size:14px; color:var(--gray-600); line-height:1.7; max-width:420px; margin:0 auto; }
+  /* Steps */
+  .steps-indicator { display:flex; justify-content:center; gap:6px; margin-bottom:20px; }
+  .step-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.3); transition:all 0.3s; }
+  .step-dot.active { background:var(--accent); transform:scale(1.4); }
+  .step-dot.done { background:rgba(255,255,255,0.7); }
+  /* Modal */
+  .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center; padding:20px; }
+  .modal-overlay.open { display:flex; }
+  .modal { background:white; border-radius:16px; padding:28px; max-width:480px; width:100%; box-shadow:var(--shadow-lg); }
+  .modal h3 { font-size:18px; font-weight:700; color:var(--navy); margin-bottom:16px; }
+  .modal-buttons { display:flex; gap:10px; margin-top:20px; }
+  .hidden { display:none !important; }
+  @media(max-width:600px){
+    .card{padding:20px 16px;} .header h1{font-size:20px;}
+    .nav-buttons{flex-direction:column-reverse;} .btn-secondary{justify-content:center;}
+    .st2-wrap{flex-direction:column;} .btn-add-st2{width:100%;}
+    .date-row{grid-template-columns:1fr;}
   }
 </style>
 </head>
 <body>
 
-<!-- MODAL AJOUT ST2 -->
+<!-- MODAL ST2 -->
 <div class="modal-overlay" id="modalST2">
   <div class="modal">
     <h3>➕ Ajouter une nouvelle société (ST2)</h3>
     <div class="alert alert-info" style="margin-bottom:16px">
       <span class="alert-icon">ℹ</span>
-      <div>Si votre société n'apparaît pas dans la liste, saisissez son nom exact ci-dessous. Elle sera ajoutée pour cette soumission.</div>
+      <div>Si votre société n'apparaît pas dans la liste, saisissez son nom exact ci-dessous.</div>
     </div>
     <div class="form-group">
       <label>Nom exact de la société <span class="required">★</span></label>
       <input type="text" id="newST2Input" placeholder="Ex : GAZELA IMPRAVEL" style="text-transform:uppercase">
-      <small style="color:var(--gray-600);font-size:12px;margin-top:4px;display:block">Saisissez en majuscules, tel qu'indiqué sur les documents officiels.</small>
+      <small style="color:var(--gray-600);font-size:12px;margin-top:4px;display:block">En majuscules, tel qu'indiqué sur les documents officiels.</small>
     </div>
     <div class="modal-buttons">
       <button class="btn btn-secondary" style="flex:1;justify-content:center" onclick="closeModalST2()">Annuler</button>
@@ -203,7 +142,7 @@
   <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
   <div class="steps-indicator" id="stepsIndicator"></div>
 
-  <!-- ÉTAPE 1 : EMPLOYEUR -->
+  <!-- ÉTAPE 1 -->
   <div class="card step" id="step1">
     <div class="section-header">
       <span class="section-badge">Section A</span>
@@ -214,23 +153,23 @@
       <label>Donneur d'ordre sur ce chantier (ST1) <span class="required">★</span></label>
       <select id="donneurOrdre" required>
         <option value="">— Sélectionnez le ST1 —</option>
-        <option>MCV</option>
-        <option>XELLA</option>
-        <option>LAL CONSTRUCTION</option>
-        <option>PIERRET</option>
-        <option>PROTIMEX</option>
-        <option>PLAFO PINTO</option>
-        <option>CARRO-BEL</option>
-        <option>MILIOTO</option>
         <option>31.</option>
-        <option>TEMPÉRATURE IDÉALE</option>
-        <option>BELGRANIT</option>
-        <option>MANDREOLI</option>
-        <option>ARTAN SERVICE</option>
-        <option>OPTIMA TOITURE</option>
-        <option>JMC FINITIONS</option>
         <option>AN DOOR</option>
+        <option>ARTAN SERVICE</option>
+        <option>BELGRANIT</option>
+        <option>CARRO-BEL</option>
         <option>HOUYOUX CONSTRUCTIONS (EG)</option>
+        <option>JMC FINITIONS</option>
+        <option>LAL CONSTRUCTION</option>
+        <option>MANDREOLI</option>
+        <option>MCV</option>
+        <option>MILIOTO</option>
+        <option>OPTIMA TOITURE</option>
+        <option>PIERRET</option>
+        <option>PLAFO PINTO</option>
+        <option>PROTIMEX</option>
+        <option>TEMPÉRATURE IDÉALE</option>
+        <option>XELLA</option>
       </select>
     </div>
 
@@ -240,55 +179,43 @@
         <select id="nomSociete" required>
           <option value="">— Sélectionnez votre société —</option>
           <optgroup label="Sous-traitants enregistrés" id="st2OptGroup">
-            <option>GAZELA IMPRAVEL</option>
-            <option>TECNOFACHADAS</option>
-            <option>MEMOZORBIS CONSTRUCOES</option>
+            <option>31. (direct)</option>
+            <option>AN DOOR (direct)</option>
+            <option>ARTAN SERVICE (direct)</option>
+            <option>AS ROOF</option>
+            <option>BELGRANIT (direct)</option>
+            <option>BV REAL CONCEPT</option>
+            <option>CARRO-BEL (direct)</option>
             <option>COFFRO GROUP</option>
             <option>CONSTROMOURA</option>
-            <option>MIN CONSTRUCT</option>
-            <option>BV REAL CONCEPT</option>
-            <option>ID POSE</option>
-            <option>N.N. CONSTRUCTIONS</option>
-            <option>MIDAV CONSTRUCT</option>
-            <option>POMPYBRUX RENOV</option>
-            <option>VP TECH</option>
-            <option>AS ROOF</option>
-            <option>GRANIBASTO SPRL</option>
             <option>DANUT CONSTRUCT GENERAL BV</option>
-            <option>MCV (direct)</option>
-            <option>XELLA (direct)</option>
-            <option>LAL CONSTRUCTION (direct)</option>
-            <option>PIERRET (direct)</option>
-            <option>PROTIMEX (direct)</option>
-            <option>PLAFO PINTO (direct)</option>
-            <option>CARRO-BEL (direct)</option>
-            <option>MILIOTO (direct)</option>
-            <option>TEMPÉRATURE IDÉALE (direct)</option>
-            <option>BELGRANIT (direct)</option>
-            <option>MANDREOLI (direct)</option>
-            <option>ARTAN SERVICE (direct)</option>
-            <option>OPTIMA TOITURE (direct)</option>
+            <option>GAZELA IMPRAVEL</option>
+            <option>GRANIBASTO SPRL</option>
+            <option>HOUYOUX CONSTRUCTIONS (direct)</option>
+            <option>ID POSE</option>
             <option>JMC FINITIONS (direct)</option>
-            <option>AN DOOR (direct)</option>
+            <option>LAL CONSTRUCTION (direct)</option>
+            <option>MANDREOLI (direct)</option>
+            <option>MCV (direct)</option>
+            <option>MEMOZORBIS CONSTRUCOES</option>
+            <option>MIDAV CONSTRUCT</option>
+            <option>MILIOTO (direct)</option>
+            <option>MIN CONSTRUCT</option>
+            <option>N.N. CONSTRUCTIONS</option>
+            <option>OPTIMA TOITURE (direct)</option>
+            <option>PIERRET (direct)</option>
+            <option>PLAFO PINTO (direct)</option>
+            <option>POMPYBRUX RENOV</option>
+            <option>PROTIMEX (direct)</option>
+            <option>TECNOFACHADAS</option>
+            <option>TEMPÉRATURE IDÉALE (direct)</option>
+            <option>VP TECH</option>
+            <option>XELLA (direct)</option>
           </optgroup>
         </select>
         <button type="button" class="btn-add-st2" onclick="openModalST2()">+ Nouvelle société</button>
       </div>
       <small style="color:var(--gray-600);font-size:12px;margin-top:6px;display:block">Si votre société n'est pas dans la liste, cliquez sur "+ Nouvelle société".</small>
-    </div>
-
-    <div class="form-group">
-      <label>Votre société est-elle sous-traitante d'un autre sous-traitant ? <span class="required">★</span></label>
-      <div class="radio-group" id="stNiveauGroup">
-        <div class="radio-option" onclick="selectRadio('stNiveau','non',this)">
-          <input type="radio" name="stNiveau" id="stNon" value="non">
-          <label for="stNon">NON — je travaille directement pour le donneur d'ordre sélectionné</label>
-        </div>
-        <div class="radio-option" onclick="selectRadio('stNiveau','oui',this)">
-          <input type="radio" name="stNiveau" id="stOui" value="oui">
-          <label for="stOui">OUI — je suis sous-traitant d'un sous-traitant (ST3 — non autorisé)</label>
-        </div>
-      </div>
     </div>
 
     <div class="form-group">
@@ -302,22 +229,7 @@
     </div>
   </div>
 
-  <!-- BLOCKED ST3 -->
-  <div class="card step hidden" id="stepBlocked">
-    <div class="blocked-screen">
-      <div class="blocked-icon">🚫</div>
-      <h2>Enregistrement impossible</h2>
-      <div class="alert alert-danger" style="text-align:left;margin:20px 0">
-        <span class="alert-icon">⛔</span>
-        <div>Le contrat avec Houyoux Constructions n'autorise pas plus de deux niveaux de sous-traitance. Un ST3 ne peut pas être enregistré via ce formulaire.</div>
-      </div>
-      <p>Veuillez contacter directement Houyoux Constructions :<br><strong>mangrisani@houyoux.be</strong></p>
-      <br>
-      <button class="btn btn-secondary" onclick="goBack('stepBlocked','step1')" style="margin:0 auto">← Retour</button>
-    </div>
-  </div>
-
-  <!-- ÉTAPE 2 : TRAVAILLEUR -->
+  <!-- ÉTAPE 2 -->
   <div class="card step hidden" id="step2">
     <div class="section-header">
       <span class="section-badge">Section B</span>
@@ -415,15 +327,7 @@
 
     <div class="form-group">
       <label>Statut du travailleur <span class="required">★</span></label>
-      <div class="radio-group" id="statutGroup">
-        <div class="radio-option" onclick="selectRadio('statut','salarie_belge',this)">
-          <input type="radio" name="statut" value="salarie_belge">
-          <label>SALARIÉ BELGE</label>
-        </div>
-        <div class="radio-option" onclick="selectRadio('statut','independant_belge',this)">
-          <input type="radio" name="statut" value="independant_belge">
-          <label>INDÉPENDANT AVEC NUMÉRO D'ENTREPRISE BELGE</label>
-        </div>
+      <div class="radio-group">
         <div class="radio-option" onclick="selectRadio('statut','aidant_independant',this)">
           <input type="radio" name="statut" value="aidant_independant">
           <label>AIDANT INDÉPENDANT</label>
@@ -440,13 +344,21 @@
           <input type="radio" name="statut" value="detache_hors_eu">
           <label>TRAVAILLEUR DÉTACHÉ HORS EU</label>
         </div>
-        <div class="radio-option" onclick="selectRadio('statut','salarie_hors_ue',this)">
-          <input type="radio" name="statut" value="salarie_hors_ue">
-          <label>SALARIÉ HORS UE</label>
-        </div>
         <div class="radio-option" onclick="selectRadio('statut','interimaire',this)">
           <input type="radio" name="statut" value="interimaire">
           <label>TRAVAILLEUR INTÉRIMAIRE</label>
+        </div>
+        <div class="radio-option" onclick="selectRadio('statut','independant_belge',this)">
+          <input type="radio" name="statut" value="independant_belge">
+          <label>INDÉPENDANT AVEC NUMÉRO D'ENTREPRISE BELGE</label>
+        </div>
+        <div class="radio-option" onclick="selectRadio('statut','salarie_belge',this)">
+          <input type="radio" name="statut" value="salarie_belge">
+          <label>SALARIÉ BELGE</label>
+        </div>
+        <div class="radio-option" onclick="selectRadio('statut','salarie_hors_ue',this)">
+          <input type="radio" name="statut" value="salarie_hors_ue">
+          <label>SALARIÉ HORS UE</label>
         </div>
       </div>
     </div>
@@ -474,35 +386,35 @@
       <select id="typeId" required>
         <option value="">— Sélectionnez —</option>
         <optgroup label="Cartes d'identité">
+          <option value="CI Alb">CI Alb — Carte d'identité albanaise</option>
           <option value="CI Bel">CI Bel — Carte d'identité belge</option>
-          <option value="CI Por">CI Por — Carte d'identité portugaise</option>
-          <option value="CI Rou">CI Rou — Carte d'identité roumaine</option>
-          <option value="CI Fra">CI Fra — Carte d'identité française</option>
-          <option value="CI Esp">CI Esp — Carte d'identité espagnole</option>
-          <option value="CI Ita">CI Ita — Carte d'identité italienne</option>
-          <option value="CI Pol">CI Pol — Carte d'identité polonaise</option>
           <option value="CI Bul">CI Bul — Carte d'identité bulgare</option>
           <option value="CI Cro">CI Cro — Carte d'identité croate</option>
-          <option value="CI Slk">CI Slk — Carte d'identité slovaque</option>
-          <option value="CI Ser">CI Ser — Carte d'identité serbe</option>
-          <option value="CI Alb">CI Alb — Carte d'identité albanaise</option>
-          <option value="CI Kos">CI Kos — Carte d'identité kosovare</option>
+          <option value="CI Esp">CI Esp — Carte d'identité espagnole</option>
+          <option value="CI Fra">CI Fra — Carte d'identité française</option>
           <option value="CI Gui">CI Gui — Carte d'identité guinéenne (Bissau)</option>
-          <option value="CI Ukr">CI Ukr — Carte d'identité ukrainienne</option>
-          <option value="CI Mol">CI Mol — Carte d'identité moldave</option>
+          <option value="CI Ita">CI Ita — Carte d'identité italienne</option>
+          <option value="CI Kos">CI Kos — Carte d'identité kosovare</option>
           <option value="CI Mar">CI Mar — Carte d'identité marocaine</option>
+          <option value="CI Mol">CI Mol — Carte d'identité moldave</option>
+          <option value="CI Pol">CI Pol — Carte d'identité polonaise</option>
+          <option value="CI Por">CI Por — Carte d'identité portugaise</option>
+          <option value="CI Rou">CI Rou — Carte d'identité roumaine</option>
+          <option value="CI Ser">CI Ser — Carte d'identité serbe</option>
+          <option value="CI Slk">CI Slk — Carte d'identité slovaque</option>
           <option value="CI Sto">CI Sto — Carte d'identité santoméenne</option>
+          <option value="CI Ukr">CI Ukr — Carte d'identité ukrainienne</option>
         </optgroup>
         <optgroup label="Passeports">
+          <option value="PP Afg">PP Afg — Passeport afghan</option>
           <option value="PP Bel">PP Bel — Passeport belge</option>
+          <option value="PP Bre">PP Bre — Passeport brésilien</option>
+          <option value="PP Fra">PP Fra — Passeport français</option>
+          <option value="PP Ind">PP Ind — Passeport indien</option>
+          <option value="PP Mar">PP Mar — Passeport marocain</option>
+          <option value="PP Pak">PP Pak — Passeport pakistanais</option>
           <option value="PP Por">PP Por — Passeport portugais</option>
           <option value="PP Rou">PP Rou — Passeport roumain</option>
-          <option value="PP Fra">PP Fra — Passeport français</option>
-          <option value="PP Bre">PP Bre — Passeport brésilien</option>
-          <option value="PP Mar">PP Mar — Passeport marocain</option>
-          <option value="PP Ind">PP Ind — Passeport indien</option>
-          <option value="PP Pak">PP Pak — Passeport pakistanais</option>
-          <option value="PP Afg">PP Afg — Passeport afghan</option>
           <option value="PP Syr">PP Syr — Passeport syrien</option>
           <option value="PP Aut">PP Aut — Passeport autre nationalité</option>
         </optgroup>
@@ -527,20 +439,29 @@
     <div class="form-group">
       <label>Formation sécurité <span class="required">★</span></label>
       <div class="radio-group">
-        <div class="radio-option" onclick="selectRadio('securite','vca',this);showSecurite('vca')">
-          <input type="radio" name="securite" value="vca">
-          <label>Certificat VCA</label>
-        </div>
         <div class="radio-option" onclick="selectRadio('securite','ok5ans',this);showSecurite('ok5ans')">
           <input type="radio" name="securite" value="ok5ans">
           <label>Attestation employeur — minimum 5 ans d'expérience sur chantier</label>
         </div>
+        <div class="radio-option" onclick="selectRadio('securite','vca',this);showSecurite('vca')">
+          <input type="radio" name="securite" value="vca">
+          <label>Certificat VCA</label>
+        </div>
       </div>
     </div>
 
+    <!-- VCA : date obtention + échéance calculée -->
     <div class="form-group hidden" id="vcaDateGroup">
-      <label>Date d'expiration du VCA <span class="required">★</span></label>
-      <input type="date" id="dateVca">
+      <label>Date d'obtention du VCA <span class="required">★</span></label>
+      <div class="date-row">
+        <div>
+          <input type="date" id="dateVcaObtention" oninput="calcEcheance('dateVcaObtention','dateVcaEcheance',5,'years')">
+        </div>
+        <div>
+          <label style="font-size:12px;color:var(--gray-600);font-weight:400;margin-bottom:4px">Échéance calculée (5 ans)</label>
+          <div class="date-computed" id="dateVcaEcheance">—</div>
+        </div>
+      </div>
     </div>
 
     <div class="form-group">
@@ -559,17 +480,27 @@
     </div>
   </div>
 
-  <!-- ÉTAPE 4 : DOCUMENTS SPÉCIFIQUES SELON STATUT -->
+  <!-- ÉTAPE 4 : DOCUMENTS SELON STATUT -->
   <div class="card step hidden" id="step4">
     <div class="section-header">
       <span class="section-badge">Section D</span>
       <span class="section-title" id="step4Title">Documents complémentaires</span>
     </div>
 
-    <!-- Salarié belge -->
+    <!-- SALARIÉ BELGE -->
     <div id="docsSalarieBelge" class="hidden">
       <div class="form-group">
-        <label>Preuve d'affiliation CAS (Caisse d'Assurances Sociales) <span class="required">★</span></label>
+        <label>Date d'obtention de l'affiliation CAS <span class="required">★</span></label>
+        <div class="date-row">
+          <div><input type="date" id="dateCAS_s_obt" oninput="calcEcheance('dateCAS_s_obt','dateCAS_s_ech',1,'years')"></div>
+          <div>
+            <label style="font-size:12px;color:var(--gray-600);font-weight:400;margin-bottom:4px">Échéance calculée (1 an)</label>
+            <div class="date-computed" id="dateCAS_s_ech">—</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Preuve d'affiliation CAS <span class="required">★</span></label>
         <small style="color:var(--gray-600);font-size:12px;display:block;margin-bottom:8px">Ex : Attestation Securex, Liantis, Partena, Acerta...</small>
         <div class="file-upload" id="uploadCAS_s">
           <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadCAS_s','fileNameCAS_s')">
@@ -580,8 +511,18 @@
       </div>
     </div>
 
-    <!-- Indépendant belge -->
+    <!-- INDÉPENDANT BELGE -->
     <div id="docsIndependant" class="hidden">
+      <div class="form-group">
+        <label>Date d'obtention de l'affiliation CAS <span class="required">★</span></label>
+        <div class="date-row">
+          <div><input type="date" id="dateCAS_i_obt" oninput="calcEcheance('dateCAS_i_obt','dateCAS_i_ech',1,'years')"></div>
+          <div>
+            <label style="font-size:12px;color:var(--gray-600);font-weight:400;margin-bottom:4px">Échéance calculée (1 an)</label>
+            <div class="date-computed" id="dateCAS_i_ech">—</div>
+          </div>
+        </div>
+      </div>
       <div class="form-group">
         <label>Preuve d'affiliation CAS <span class="required">★</span></label>
         <div class="file-upload" id="uploadCAS_i">
@@ -589,6 +530,16 @@
           <div class="file-upload-icon">📋</div>
           <div class="file-upload-text"><strong>PDF, JPG ou PNG</strong></div>
           <div class="file-name" id="fileNameCAS_i"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Date d'obtention des cotisations <span class="required">★</span></label>
+        <div class="date-row">
+          <div><input type="date" id="dateCotis_i_obt" oninput="calcEcheance('dateCotis_i_obt','dateCotis_i_ech',3,'months')"></div>
+          <div>
+            <label style="font-size:12px;color:var(--gray-600);font-weight:400;margin-bottom:4px">Échéance calculée (3 mois)</label>
+            <div class="date-computed" id="dateCotis_i_ech">—</div>
+          </div>
         </div>
       </div>
       <div class="form-group">
@@ -601,8 +552,8 @@
         </div>
       </div>
       <div class="form-group">
-        <label>Extrait BCE <span class="required">★</span></label>
-        <small style="color:var(--gray-600);font-size:12px;display:block;margin-bottom:8px">Disponible sur economie.fgov.be</small>
+        <label>Extrait BCE</label>
+        <small style="color:var(--gray-600);font-size:12px;display:block;margin-bottom:8px">Document permanent — pas de date d'expiration. Disponible sur economie.fgov.be</small>
         <div class="file-upload" id="uploadBCE_i">
           <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadBCE_i','fileNameBCE_i')">
           <div class="file-upload-icon">🏢</div>
@@ -612,11 +563,21 @@
       </div>
     </div>
 
-    <!-- Aidant indépendant -->
+    <!-- AIDANT INDÉPENDANT -->
     <div id="docsAidant" class="hidden">
       <div class="alert alert-info">
         <span class="alert-icon">ℹ</span>
-        <div>L'aidant indépendant doit fournir une preuve d'affiliation à l'INASTI et l'extrait BCE de la société pour laquelle il travaille.</div>
+        <div>L'aidant indépendant fournit une preuve d'affiliation INASTI et l'extrait BCE de la société.</div>
+      </div>
+      <div class="form-group">
+        <label>Date d'obtention de l'affiliation INASTI / CAS <span class="required">★</span></label>
+        <div class="date-row">
+          <div><input type="date" id="dateCAS_a_obt" oninput="calcEcheance('dateCAS_a_obt','dateCAS_a_ech',1,'years')"></div>
+          <div>
+            <label style="font-size:12px;color:var(--gray-600);font-weight:400;margin-bottom:4px">Échéance calculée (1 an)</label>
+            <div class="date-computed" id="dateCAS_a_ech">—</div>
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label>Preuve d'affiliation INASTI / CAS <span class="required">★</span></label>
@@ -628,7 +589,8 @@
         </div>
       </div>
       <div class="form-group">
-        <label>Extrait BCE de la société employeur <span class="required">★</span></label>
+        <label>Extrait BCE de la société employeur</label>
+        <small style="color:var(--gray-600);font-size:12px;display:block;margin-bottom:8px">Document permanent — pas de date d'expiration.</small>
         <div class="file-upload" id="uploadBCE_a">
           <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadBCE_a','fileNameBCE_a')">
           <div class="file-upload-icon">🏢</div>
@@ -638,8 +600,18 @@
       </div>
     </div>
 
-    <!-- Associé actif -->
+    <!-- ASSOCIÉ ACTIF -->
     <div id="docsAssocie" class="hidden">
+      <div class="form-group">
+        <label>Date d'obtention de l'affiliation CAS <span class="required">★</span></label>
+        <div class="date-row">
+          <div><input type="date" id="dateCAS_ac_obt" oninput="calcEcheance('dateCAS_ac_obt','dateCAS_ac_ech',1,'years')"></div>
+          <div>
+            <label style="font-size:12px;color:var(--gray-600);font-weight:400;margin-bottom:4px">Échéance calculée (1 an)</label>
+            <div class="date-computed" id="dateCAS_ac_ech">—</div>
+          </div>
+        </div>
+      </div>
       <div class="form-group">
         <label>Preuve d'affiliation CAS <span class="required">★</span></label>
         <div class="file-upload" id="uploadCAS_ac">
@@ -647,6 +619,16 @@
           <div class="file-upload-icon">📋</div>
           <div class="file-upload-text"><strong>PDF, JPG ou PNG</strong></div>
           <div class="file-name" id="fileNameCAS_ac"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Date d'obtention des cotisations <span class="required">★</span></label>
+        <div class="date-row">
+          <div><input type="date" id="dateCotis_ac_obt" oninput="calcEcheance('dateCotis_ac_obt','dateCotis_ac_ech',3,'months')"></div>
+          <div>
+            <label style="font-size:12px;color:var(--gray-600);font-weight:400;margin-bottom:4px">Échéance calculée (3 mois)</label>
+            <div class="date-computed" id="dateCotis_ac_ech">—</div>
+          </div>
         </div>
       </div>
       <div class="form-group">
@@ -659,7 +641,8 @@
         </div>
       </div>
       <div class="form-group">
-        <label>Extrait BCE <span class="required">★</span></label>
+        <label>Extrait BCE</label>
+        <small style="color:var(--gray-600);font-size:12px;display:block;margin-bottom:8px">Document permanent — pas de date d'expiration.</small>
         <div class="file-upload" id="uploadBCE_ac">
           <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadBCE_ac','fileNameBCE_ac')">
           <div class="file-upload-icon">🏢</div>
@@ -668,7 +651,8 @@
         </div>
       </div>
       <div class="form-group">
-        <label>Statuts de société (Moniteur belge) <span class="required">★</span></label>
+        <label>Statuts de société (Moniteur belge)</label>
+        <small style="color:var(--gray-600);font-size:12px;display:block;margin-bottom:8px">Document permanent — pas de date d'expiration.</small>
         <div class="file-upload" id="uploadStatuts_ac">
           <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadStatuts_ac','fileNameStatuts_ac')">
           <div class="file-upload-icon">📜</div>
@@ -677,7 +661,8 @@
         </div>
       </div>
       <div class="form-group">
-        <label>Registre des parts <span class="required">★</span></label>
+        <label>Registre des parts</label>
+        <small style="color:var(--gray-600);font-size:12px;display:block;margin-bottom:8px">Document permanent — pas de date d'expiration.</small>
         <div class="file-upload" id="uploadParts_ac">
           <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadParts_ac','fileNameParts_ac')">
           <div class="file-upload-icon">📊</div>
@@ -687,11 +672,20 @@
       </div>
     </div>
 
-    <!-- Détaché EU / Hors EU / Salarié hors UE -->
+    <!-- DÉTACHÉ EU / HORS EU / HORS UE -->
     <div id="docsDetache" class="hidden">
       <div class="form-group">
+        <label>Date d'obtention du L1 (Limosa) <span class="required">★</span></label>
+        <div class="date-row">
+          <div><input type="date" id="dateL1Obt" oninput="calcEcheance('dateL1Obt','dateL1Ech',24,'months')"></div>
+          <div>
+            <label style="font-size:12px;color:var(--gray-600);font-weight:400;margin-bottom:4px">Échéance calculée (24 mois max)</label>
+            <div class="date-computed" id="dateL1Ech">—</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
         <label>L1 — Attestation de détachement (Limosa) <span class="required">★</span></label>
-        <small style="color:var(--gray-600);font-size:12px;display:block;margin-bottom:8px">Durée maximale 24 mois.</small>
         <div class="file-upload" id="uploadL1">
           <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'uploadL1','fileNameL1')">
           <div class="file-upload-icon">📄</div>
@@ -700,8 +694,9 @@
         </div>
       </div>
       <div class="form-group">
-        <label>Date d'expiration du L1 <span class="required">★</span></label>
-        <input type="date" id="dateL1">
+        <label>Date d'expiration du A1 <span class="required">★</span></label>
+        <input type="date" id="dateA1" placeholder="Date inscrite sur le document A1">
+        <small style="color:var(--gray-600);font-size:12px;margin-top:4px;display:block">Saisissez la date d'expiration telle qu'indiquée sur le document A1.</small>
       </div>
       <div class="form-group">
         <label>A1 — Attestation de couverture sociale <span class="required">★</span></label>
@@ -712,17 +707,17 @@
           <div class="file-name" id="fileNameA1"></div>
         </div>
       </div>
-      <div class="form-group">
-        <label>Date d'expiration du A1 <span class="required">★</span></label>
-        <input type="date" id="dateA1">
-      </div>
     </div>
 
-    <!-- Intérimaire -->
+    <!-- INTÉRIMAIRE -->
     <div id="docsInterimaire" class="hidden">
       <div class="alert alert-warning">
         <span class="alert-icon">⚠</span>
-        <div>Pour les travailleurs intérimaires, les documents sont à fournir par l'agence d'intérim. Assurez-vous que l'agence a bien transmis les documents requis à Houyoux Constructions.</div>
+        <div>Pour les travailleurs intérimaires, les documents sont à fournir par l'agence d'intérim.</div>
+      </div>
+      <div class="form-group">
+        <label>Date de début du contrat de mission <span class="required">★</span></label>
+        <input type="date" id="dateDebutInterim">
       </div>
       <div class="form-group">
         <label>Contrat de mission intérimaire <span class="required">★</span></label>
@@ -765,35 +760,35 @@
     <div class="hidden" id="sejourDocGroup">
       <div class="form-group">
         <label>Type de document de séjour <span class="required">★</span></label>
-        <select id="typeSeiour">
+        <select id="typeSeiour" onchange="onSejourTypeChange()">
           <option value="">— Sélectionnez —</option>
           <optgroup label="Court séjour (0–3 mois)">
             <option value="ANN3TER">ANN3TER — Annexe 3ter (EU, séjour &lt; 3 mois)</option>
-            <option value="ANN3">ANN3 — Annexe 3 / Visa C (hors EU, &lt; 3 mois + permis travail)</option>
+            <option value="ANN3">ANN3 — Annexe 3 / Visa C (hors EU + permis travail)</option>
           </optgroup>
-          <optgroup label="Séjour moyen (3–6 mois)">
+          <optgroup label="Séjour moyen">
             <option value="ANN19">ANN19 — Annexe 19 — À déposer avant 3 mois (validité 6 mois)</option>
           </optgroup>
           <optgroup label="Long séjour EU (> 3 mois)">
-            <option value="ANN8TER">ANN8TER — Annexe 8ter (séjour &gt; 3 mois et &lt; 5 ans)</option>
-            <option value="CARTE EU">CARTE EU — Carte EU (ex-E, citoyen EU &gt; 3 mois, 5 ans)</option>
-            <option value="CARTE EU+">CARTE EU+ — Carte EU+ (ex-E+, séjour permanent EU, 10 ans)</option>
-            <option value="CARTE F">CARTE F — Carte F (famille citoyen EU, non-EU, 5 ans)</option>
-            <option value="CARTE F+">CARTE F+ — Carte F+ (famille citoyen EU, séjour permanent, 10 ans)</option>
+            <option value="ANN8TER">ANN8TER — Annexe 8ter (&gt; 3 mois et &lt; 5 ans)</option>
+            <option value="CARTE EU">CARTE EU — Carte EU (ex-E, citoyen EU, 5 ans)</option>
+            <option value="CARTE EU+">CARTE EU+ — Carte EU+ (ex-E+, séjour permanent, 10 ans)</option>
+            <option value="CARTE F">CARTE F — Carte F (famille citoyen EU, 5 ans)</option>
+            <option value="CARTE F+">CARTE F+ — Carte F+ (famille citoyen EU, permanent, 10 ans)</option>
           </optgroup>
           <optgroup label="Séjour hors EU">
             <option value="ANN49">ANN49 — Annexe 49 (hors EU, &gt; 4,5 mois)</option>
             <option value="ANN4647">ANN4647 — Annexe 46/47 (hors EU)</option>
-            <option value="PERMIS UNIQUE">PERMIS UNIQUE — Permis Unique (séjour + travail, hors EU &gt; 3 mois)</option>
+            <option value="PERMIS UNIQUE">PERMIS UNIQUE — Permis Unique (séjour + travail)</option>
           </optgroup>
           <optgroup label="Cartes de séjour belges">
             <option value="CARTE A">CARTE A — Carte A (séjour temporaire, 1 an)</option>
             <option value="CARTE B">CARTE B — Carte B (séjour illimité, 5 ans)</option>
+            <option value="CARTE H">CARTE H — Carte H (Carte bleue européenne)</option>
             <option value="CARTE K">CARTE K — Carte K (ex-C, identité étrangers, 10 ans)</option>
-            <option value="CARTE L">CARTE L — Carte L (ex-D, résident longue durée non-EU, 10 ans)</option>
-            <option value="CARTE H">CARTE H — Carte H (Carte bleue européenne, hautement qualifiés)</option>
+            <option value="CARTE L">CARTE L — Carte L (ex-D, résident longue durée, 10 ans)</option>
             <option value="CARTE M">CARTE M — Carte M (BREXIT, 5 ans)</option>
-            <option value="CARTE M+">CARTE M+ — Carte M+ (BREXIT séjour permanent, 10 ans)</option>
+            <option value="CARTE M+">CARTE M+ — Carte M+ (BREXIT permanent, 10 ans)</option>
           </optgroup>
           <optgroup label="Autres">
             <option value="VISA">VISA — Visa C ou D</option>
@@ -806,10 +801,24 @@
         <div><strong>Annexe 19 — validité 6 mois.</strong> Une alerte automatique sera envoyée à l'approche de l'expiration des 6 mois. Passé ce délai, un document de séjour définitif doit être fourni.</div>
       </div>
 
-      <div class="form-group">
+      <!-- Date obtention + échéance calculée pour Annexe 19 -->
+      <div class="form-group hidden" id="sejourAnn19DateGroup">
+        <label>Date d'obtention de l'Annexe 19 <span class="required">★</span></label>
+        <div class="date-row">
+          <div><input type="date" id="dateAnn19Obt" oninput="calcEcheance('dateAnn19Obt','dateAnn19Ech',6,'months')"></div>
+          <div>
+            <label style="font-size:12px;color:var(--gray-600);font-weight:400;margin-bottom:4px">Échéance calculée (6 mois)</label>
+            <div class="date-computed" id="dateAnn19Ech">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Date expiration manuelle pour autres documents de séjour -->
+      <div class="form-group" id="sejourDateManuelGroup">
         <label>Date d'expiration du document de séjour <span class="required">★</span></label>
         <input type="date" id="dateSeiour">
       </div>
+
       <div class="form-group">
         <label>Upload du document de séjour <span class="required">★</span></label>
         <div class="file-upload" id="uploadSeiour">
@@ -824,7 +833,7 @@
     <div class="hidden" id="sejourRdvGroup">
       <div class="alert alert-warning">
         <span class="alert-icon">⚠</span>
-        <div>La preuve de RDV est acceptée provisoirement. Vous aurez <strong>5 jours ouvrables</strong> après la date du RDV pour fournir l'annexe obtenue.</div>
+        <div>La preuve de RDV est acceptée provisoirement. Vous aurez <strong>5 jours ouvrables</strong> après le RDV pour fournir l'annexe obtenue.</div>
       </div>
       <div class="form-group">
         <label>Date du rendez-vous en commune <span class="required">★</span></label>
@@ -856,11 +865,11 @@
 
     <div class="alert alert-warning">
       <span class="alert-icon">⚠</span>
-      <div><strong>Important :</strong> Le QR code de pointage est un outil de gestion interne uniquement. Il ne remplace <strong>en aucun cas</strong> les obligations légales de déclaration ONSS ni l'enregistrement via Checkin@work (CIAW). Ces démarches restent entièrement à votre charge.</div>
+      <div><strong>Important :</strong> Le QR code de pointage est un outil de gestion interne uniquement. Il ne remplace en aucun cas les obligations légales de déclaration ONSS ni l'enregistrement via Checkin@work (CIAW).</div>
     </div>
 
     <div class="engagement-box">
-      <p>Je soussigné(e), représentant(e) de la société indiquée dans ce formulaire, <strong>certifie que les documents fournis sont authentiques</strong>, que les dates de validité indiquées sont exactes, et que toutes les informations renseignées sont conformes à la réalité.</p>
+      <p>Je soussigné(e), représentant(e) de la société indiquée dans ce formulaire, <strong>certifie que les documents fournis sont authentiques</strong>, que les dates indiquées sont exactes, et que toutes les informations renseignées sont conformes à la réalité.</p>
       <br>
       <p>Je reconnais être seul(e) responsable en cas de document falsifié ou de date erronée, et j'accepte que <strong>Houyoux Constructions se réserve le droit de facturer une amende forfaitaire</strong> par document non conforme, sans préjudice des poursuites légales applicables.</p>
     </div>
@@ -877,9 +886,9 @@
       <textarea id="commentaires" rows="3" placeholder="Situation particulière, document en cours de renouvellement..." style="resize:vertical"></textarea>
     </div>
 
-    <div class="alert alert-info" id="recapitulatif">
+    <div class="alert alert-info">
       <span class="alert-icon">📋</span>
-      <div id="recapContent">Récapitulatif de votre enregistrement...</div>
+      <div id="recapContent">Récapitulatif...</div>
     </div>
 
     <div class="nav-buttons">
@@ -898,7 +907,6 @@
       <button class="btn btn-primary" style="margin:0 auto" onclick="resetForm()">Enregistrer un autre travailleur +</button>
     </div>
   </div>
-
 </div>
 
 <script>
@@ -906,39 +914,42 @@
   const totalSteps = 6;
   const statut = () => document.querySelector('input[name="statut"]:checked')?.value;
 
+  // ── CALCUL ÉCHÉANCE ──
+  function calcEcheance(inputId, outputId, amount, unit) {
+    const val = document.getElementById(inputId).value;
+    const out = document.getElementById(outputId);
+    if (!val) { out.textContent = '—'; out.className = 'date-computed'; return; }
+    const d = new Date(val);
+    if (unit === 'years') d.setFullYear(d.getFullYear() + amount);
+    else if (unit === 'months') d.setMonth(d.getMonth() + amount);
+    const today = new Date(); today.setHours(0,0,0,0);
+    const diff = Math.floor((d - today) / 86400000);
+    const formatted = d.toLocaleDateString('fr-BE', {day:'2-digit', month:'2-digit', year:'numeric'});
+    out.textContent = formatted;
+    if (diff < 0) { out.className = 'date-computed alert-date'; out.textContent += ' ⚠ Expiré'; }
+    else if (diff <= 30) { out.className = 'date-computed warn-date'; out.textContent += ' ⚠ < 30 jours'; }
+    else { out.className = 'date-computed'; }
+  }
+
   // ── MODAL ST2 ──
   function openModalST2() {
     document.getElementById('newST2Input').value = '';
     document.getElementById('modalST2').classList.add('open');
     document.getElementById('newST2Input').focus();
   }
-  function closeModalST2() {
-    document.getElementById('modalST2').classList.remove('open');
-  }
+  function closeModalST2() { document.getElementById('modalST2').classList.remove('open'); }
   function confirmAddST2() {
     const val = document.getElementById('newST2Input').value.trim().toUpperCase();
     if (!val) { alert('Veuillez saisir le nom de la société.'); return; }
     const sel = document.getElementById('nomSociete');
-    // Vérifier si déjà présent
-    for (let o of sel.options) {
-      if (o.value.toUpperCase() === val) {
-        sel.value = o.value;
-        closeModalST2();
-        return;
-      }
-    }
-    // Ajouter dans le optgroup
+    for (let o of sel.options) { if (o.value.toUpperCase() === val) { sel.value = o.value; closeModalST2(); return; } }
     const opt = document.createElement('option');
-    opt.value = val;
-    opt.text = val + ' ✦ nouveau';
+    opt.value = val; opt.text = val + ' ✦ nouveau';
     document.getElementById('st2OptGroup').appendChild(opt);
     sel.value = val;
     closeModalST2();
   }
-  // Fermer modal en cliquant sur l'overlay
-  document.getElementById('modalST2').addEventListener('click', function(e) {
-    if (e.target === this) closeModalST2();
-  });
+  document.getElementById('modalST2').addEventListener('click', function(e) { if (e.target === this) closeModalST2(); });
 
   // ── PROGRESS ──
   function initSteps() {
@@ -952,7 +963,6 @@
     }
     updateProgress();
   }
-
   function updateProgress() {
     const pct = ((currentStep - 1) / totalSteps) * 100;
     document.getElementById('progressBar').style.width = pct + '%';
@@ -963,63 +973,45 @@
       d.className = 'step-dot' + (i === currentStep ? ' active' : i < currentStep ? ' done' : '');
     }
   }
-
   function showStep(n) {
     document.querySelectorAll('.step').forEach(s => s.classList.add('hidden'));
     const el = document.getElementById('step' + n);
-    if (el) { el.classList.remove('hidden'); currentStep = (typeof n === 'number') ? n : currentStep; updateProgress(); }
+    if (el) { el.classList.remove('hidden'); if (typeof n === 'number') currentStep = n; updateProgress(); }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
   function selectRadio(name, value, el) {
-    document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
-      r.checked = false;
-      r.closest('.radio-option').classList.remove('selected');
-    });
-    el.querySelector('input').checked = true;
-    el.classList.add('selected');
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r => { r.checked = false; r.closest('.radio-option').classList.remove('selected'); });
+    el.querySelector('input').checked = true; el.classList.add('selected');
   }
-
   function toggleEngagement(el) {
     const cb = document.getElementById('engagement');
-    cb.checked = !cb.checked;
-    el.classList.toggle('selected', cb.checked);
+    cb.checked = !cb.checked; el.classList.toggle('selected', cb.checked);
     document.getElementById('submitBtn').disabled = !cb.checked;
   }
-
   function handleFile(input, uploadId, nameId) {
     const file = input.files[0];
-    if (file) {
-      document.getElementById(uploadId).classList.add('has-file');
-      document.getElementById(nameId).textContent = '✓ ' + file.name;
-    }
+    if (file) { document.getElementById(uploadId).classList.add('has-file'); document.getElementById(nameId).textContent = '✓ ' + file.name; }
   }
-
-  function showSecurite(type) {
-    document.getElementById('vcaDateGroup').classList.toggle('hidden', type !== 'vca');
-  }
-
+  function showSecurite(type) { document.getElementById('vcaDateGroup').classList.toggle('hidden', type !== 'vca'); }
   function toggleSejour(type) {
     document.getElementById('sejourDocGroup').classList.toggle('hidden', type !== 'oui');
     document.getElementById('sejourRdvGroup').classList.toggle('hidden', type !== 'rdv');
   }
-
-  // Alerte Annexe 19
-  document.addEventListener('change', function(e) {
-    if (e.target && e.target.id === 'typeSeiour') {
-      document.getElementById('ann19Warning').classList.toggle('hidden', e.target.value !== 'ANN19');
-    }
-  });
+  function onSejourTypeChange() {
+    const val = document.getElementById('typeSeiour').value;
+    const isAnn19 = val === 'ANN19';
+    document.getElementById('ann19Warning').classList.toggle('hidden', !isAnn19);
+    document.getElementById('sejourAnn19DateGroup').classList.toggle('hidden', !isAnn19);
+    document.getElementById('sejourDateManuelGroup').classList.toggle('hidden', isAnn19);
+  }
 
   // ── NAVIGATION ──
   function nextStep(from) {
     if (from === 1) {
       const don = document.getElementById('donneurOrdre').value;
       const soc = document.getElementById('nomSociete').value;
-      const stN = document.querySelector('input[name="stNiveau"]:checked')?.value;
       const email = document.getElementById('emailContact').value.trim();
-      if (!don || !soc || !stN || !email) { alert('Veuillez compléter tous les champs obligatoires.'); return; }
-      if (stN === 'oui') { showStep('Blocked'); return; }
+      if (!don || !soc || !email) { alert('Veuillez compléter tous les champs obligatoires.'); return; }
       showStep(2);
 
     } else if (from === 2) {
@@ -1027,63 +1019,70 @@
       const nat = document.getElementById('nationalite').value;
       const st = statut();
       if (!nom || !nat || !st) { alert('Veuillez compléter tous les champs obligatoires.'); return; }
-      prepareStep4();
-      showStep(3);
+      prepareStep4(); showStep(3);
 
     } else if (from === 3) {
       const typeId = document.getElementById('typeId').value;
       const dateId = document.getElementById('dateExpId').value;
       const sec = document.querySelector('input[name="securite"]:checked')?.value;
-      const fileId = document.getElementById('uploadId').classList.contains('has-file');
-      const fileSecurite = document.getElementById('uploadSecurite').classList.contains('has-file');
       if (!typeId || !dateId || !sec) { alert('Veuillez compléter tous les champs obligatoires.'); return; }
-      if (!fileId) { alert('⚠ Veuillez joindre le document d\'identité.'); return; }
-      if (!fileSecurite) { alert('⚠ Veuillez joindre le justificatif de formation sécurité.'); return; }
+      if (!document.getElementById('uploadId').classList.contains('has-file')) { alert('⚠ Veuillez joindre le document d\'identité.'); return; }
+      if (!document.getElementById('uploadSecurite').classList.contains('has-file')) { alert('⚠ Veuillez joindre le justificatif de formation sécurité.'); return; }
       if (new Date(dateId) < new Date()) { alert('⚠ La date d\'expiration du document d\'identité est dépassée.'); return; }
       showStep(4);
 
     } else if (from === 4) {
       const st = statut();
       if (st === 'salarie_belge') {
-        if (!document.getElementById('uploadCAS_s').classList.contains('has-file')) { alert('⚠ Veuillez joindre la preuve d\'affiliation CAS.'); return; }
+        if (!document.getElementById('dateCAS_s_obt').value) { alert('⚠ Veuillez indiquer la date d\'obtention du CAS.'); return; }
+        if (!document.getElementById('uploadCAS_s').classList.contains('has-file')) { alert('⚠ Veuillez joindre la preuve CAS.'); return; }
       } else if (st === 'independant_belge') {
-        if (!document.getElementById('uploadCAS_i').classList.contains('has-file')) { alert('⚠ Veuillez joindre la preuve d\'affiliation CAS.'); return; }
+        if (!document.getElementById('dateCAS_i_obt').value) { alert('⚠ Veuillez indiquer la date d\'obtention du CAS.'); return; }
+        if (!document.getElementById('uploadCAS_i').classList.contains('has-file')) { alert('⚠ Veuillez joindre la preuve CAS.'); return; }
+        if (!document.getElementById('dateCotis_i_obt').value) { alert('⚠ Veuillez indiquer la date d\'obtention des cotisations.'); return; }
         if (!document.getElementById('uploadCotis_i').classList.contains('has-file')) { alert('⚠ Veuillez joindre la preuve de cotisations.'); return; }
         if (!document.getElementById('uploadBCE_i').classList.contains('has-file')) { alert('⚠ Veuillez joindre l\'extrait BCE.'); return; }
       } else if (st === 'aidant_independant') {
-        if (!document.getElementById('uploadCAS_a').classList.contains('has-file')) { alert('⚠ Veuillez joindre la preuve d\'affiliation INASTI/CAS.'); return; }
+        if (!document.getElementById('dateCAS_a_obt').value) { alert('⚠ Veuillez indiquer la date d\'obtention INASTI/CAS.'); return; }
+        if (!document.getElementById('uploadCAS_a').classList.contains('has-file')) { alert('⚠ Veuillez joindre la preuve INASTI/CAS.'); return; }
         if (!document.getElementById('uploadBCE_a').classList.contains('has-file')) { alert('⚠ Veuillez joindre l\'extrait BCE.'); return; }
       } else if (st === 'associe_actif') {
+        if (!document.getElementById('dateCAS_ac_obt').value) { alert('⚠ Veuillez indiquer la date d\'obtention du CAS.'); return; }
         if (!document.getElementById('uploadCAS_ac').classList.contains('has-file')) { alert('⚠ Veuillez joindre la preuve CAS.'); return; }
+        if (!document.getElementById('dateCotis_ac_obt').value) { alert('⚠ Veuillez indiquer la date d\'obtention des cotisations.'); return; }
+        if (!document.getElementById('uploadCotis_ac').classList.contains('has-file')) { alert('⚠ Veuillez joindre la preuve de cotisations.'); return; }
         if (!document.getElementById('uploadBCE_ac').classList.contains('has-file')) { alert('⚠ Veuillez joindre l\'extrait BCE.'); return; }
         if (!document.getElementById('uploadStatuts_ac').classList.contains('has-file')) { alert('⚠ Veuillez joindre les statuts.'); return; }
         if (!document.getElementById('uploadParts_ac').classList.contains('has-file')) { alert('⚠ Veuillez joindre le registre des parts.'); return; }
       } else if (['detache_eu','detache_hors_eu','salarie_hors_ue'].includes(st)) {
-        const dateL1 = document.getElementById('dateL1').value;
-        const dateA1 = document.getElementById('dateA1').value;
-        if (!document.getElementById('uploadL1').classList.contains('has-file') || !dateL1) { alert('⚠ Veuillez joindre le L1 et sa date d\'expiration.'); return; }
-        if (!document.getElementById('uploadA1').classList.contains('has-file') || !dateA1) { alert('⚠ Veuillez joindre le A1 et sa date d\'expiration.'); return; }
+        if (!document.getElementById('dateL1Obt').value) { alert('⚠ Veuillez indiquer la date d\'obtention du L1.'); return; }
+        if (!document.getElementById('uploadL1').classList.contains('has-file')) { alert('⚠ Veuillez joindre le L1 (Limosa).'); return; }
+        if (!document.getElementById('dateA1').value) { alert('⚠ Veuillez indiquer la date d\'expiration du A1.'); return; }
+        if (!document.getElementById('uploadA1').classList.contains('has-file')) { alert('⚠ Veuillez joindre le A1.'); return; }
       } else if (st === 'interimaire') {
-        if (!document.getElementById('uploadContratInterim').classList.contains('has-file')) { alert('⚠ Veuillez joindre le contrat de mission intérimaire.'); return; }
+        if (!document.getElementById('dateDebutInterim').value) { alert('⚠ Veuillez indiquer la date de début du contrat.'); return; }
+        if (!document.getElementById('uploadContratInterim').classList.contains('has-file')) { alert('⚠ Veuillez joindre le contrat de mission.'); return; }
       }
-
-      const needsSejour = ['detache_eu','detache_hors_eu','salarie_hors_ue'].includes(st);
-      if (needsSejour) { showStep(5); } else { buildRecap(); showStep(6); }
+      if (['detache_eu','detache_hors_eu','salarie_hors_ue'].includes(st)) { showStep(5); }
+      else { buildRecap(); showStep(6); }
 
     } else if (from === 5) {
       const sejourType = document.querySelector('input[name="sejour"]:checked')?.value;
       if (!sejourType) { alert('⚠ Veuillez indiquer votre situation concernant le document de séjour.'); return; }
       if (sejourType === 'oui') {
         const typeSej = document.getElementById('typeSeiour').value;
-        const dateSej = document.getElementById('dateSeiour').value;
-        if (!typeSej || !dateSej) { alert('⚠ Veuillez indiquer le type et la date d\'expiration du document de séjour.'); return; }
+        if (!typeSej) { alert('⚠ Veuillez sélectionner le type de document de séjour.'); return; }
+        if (typeSej === 'ANN19') {
+          if (!document.getElementById('dateAnn19Obt').value) { alert('⚠ Veuillez indiquer la date d\'obtention de l\'Annexe 19.'); return; }
+        } else {
+          if (!document.getElementById('dateSeiour').value) { alert('⚠ Veuillez indiquer la date d\'expiration du document de séjour.'); return; }
+        }
         if (!document.getElementById('uploadSeiour').classList.contains('has-file')) { alert('⚠ Veuillez joindre le document de séjour.'); return; }
       } else if (sejourType === 'rdv') {
         if (!document.getElementById('dateRdv').value) { alert('⚠ Veuillez indiquer la date du rendez-vous.'); return; }
         if (!document.getElementById('uploadRdv').classList.contains('has-file')) { alert('⚠ Veuillez joindre la preuve de rendez-vous.'); return; }
       }
-      buildRecap();
-      showStep(6);
+      buildRecap(); showStep(6);
     }
   }
 
@@ -1099,36 +1098,22 @@
     }
   }
 
-  function goBack(fromId, toId) {
-    document.getElementById(fromId).classList.add('hidden');
-    document.getElementById(toId).classList.remove('hidden');
-  }
-
   function prepareStep4() {
     const st = statut();
     ['docsSalarieBelge','docsIndependant','docsAidant','docsAssocie','docsDetache','docsInterimaire']
       .forEach(id => document.getElementById(id).classList.add('hidden'));
     const title = document.getElementById('step4Title');
-
-    if (st === 'salarie_belge') {
-      title.textContent = 'Documents — Salarié belge';
-      document.getElementById('docsSalarieBelge').classList.remove('hidden');
-    } else if (st === 'independant_belge') {
-      title.textContent = 'Documents — Indépendant belge';
-      document.getElementById('docsIndependant').classList.remove('hidden');
-    } else if (st === 'aidant_independant') {
-      title.textContent = 'Documents — Aidant indépendant';
-      document.getElementById('docsAidant').classList.remove('hidden');
-    } else if (st === 'associe_actif') {
-      title.textContent = 'Documents — Associé actif';
-      document.getElementById('docsAssocie').classList.remove('hidden');
-    } else if (['detache_eu','detache_hors_eu','salarie_hors_ue'].includes(st)) {
-      title.textContent = 'Documents — Détachement (L1 & A1)';
-      document.getElementById('docsDetache').classList.remove('hidden');
-    } else if (st === 'interimaire') {
-      title.textContent = 'Documents — Travailleur intérimaire';
-      document.getElementById('docsInterimaire').classList.remove('hidden');
-    }
+    const map = {
+      salarie_belge: ['docsSalarieBelge','Documents — Salarié belge'],
+      independant_belge: ['docsIndependant','Documents — Indépendant belge'],
+      aidant_independant: ['docsAidant','Documents — Aidant indépendant'],
+      associe_actif: ['docsAssocie','Documents — Associé actif'],
+      detache_eu: ['docsDetache','Documents — Détachement EU (L1 & A1)'],
+      detache_hors_eu: ['docsDetache','Documents — Détachement hors EU (L1 & A1)'],
+      salarie_hors_ue: ['docsDetache','Documents — Salarié hors UE (L1 & A1)'],
+      interimaire: ['docsInterimaire','Documents — Travailleur intérimaire'],
+    };
+    if (map[st]) { document.getElementById(map[st][0]).classList.remove('hidden'); title.textContent = map[st][1]; }
   }
 
   function buildRecap() {
@@ -1138,18 +1123,16 @@
     const natSel = document.getElementById('nationalite');
     const nat = natSel.options[natSel.selectedIndex]?.text || '';
     const st = statut() || '';
-    const statutLabels = {
-      salarie_belge: 'Salarié belge', independant_belge: 'Indépendant belge',
-      aidant_independant: 'Aidant indépendant', associe_actif: 'Associé actif',
-      detache_eu: 'Travailleur détaché EU', detache_hors_eu: 'Travailleur détaché hors EU',
-      salarie_hors_ue: 'Salarié hors UE', interimaire: 'Travailleur intérimaire'
+    const labels = {
+      salarie_belge:'Salarié belge', independant_belge:'Indépendant belge',
+      aidant_independant:'Aidant indépendant', associe_actif:'Associé actif',
+      detache_eu:'Travailleur détaché EU', detache_hors_eu:'Travailleur détaché hors EU',
+      salarie_hors_ue:'Salarié hors UE', interimaire:'Travailleur intérimaire'
     };
     document.getElementById('recapContent').innerHTML =
-      `<strong>Travailleur :</strong> ${nom}<br>` +
-      `<strong>ST1 :</strong> ${don}<br>` +
-      `<strong>Société (ST2) :</strong> ${soc}<br>` +
-      `<strong>Nationalité :</strong> ${nat}<br>` +
-      `<strong>Statut :</strong> ${statutLabels[st] || st}`;
+      `<strong>Travailleur :</strong> ${nom}<br><strong>ST1 :</strong> ${don}<br>` +
+      `<strong>Société (ST2) :</strong> ${soc}<br><strong>Nationalité :</strong> ${nat}<br>` +
+      `<strong>Statut :</strong> ${labels[st]||st}`;
   }
 
   function submitForm() {
@@ -1161,16 +1144,17 @@
   }
 
   function resetForm() {
-    document.querySelectorAll('input[type=text], input[type=email], input[type=date], select, textarea').forEach(el => el.value = '');
-    document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach(el => el.checked = false);
-    document.querySelectorAll('.radio-option, .checkbox-option').forEach(el => el.classList.remove('selected'));
+    document.querySelectorAll('input[type=text],input[type=email],input[type=date],select,textarea').forEach(el => el.value = '');
+    document.querySelectorAll('input[type=radio],input[type=checkbox]').forEach(el => el.checked = false);
+    document.querySelectorAll('.radio-option,.checkbox-option').forEach(el => el.classList.remove('selected'));
     document.querySelectorAll('.file-upload').forEach(el => el.classList.remove('has-file'));
     document.querySelectorAll('.file-name').forEach(el => el.textContent = '');
+    document.querySelectorAll('.date-computed').forEach(el => { el.textContent = '—'; el.className = 'date-computed'; });
     document.getElementById('submitBtn').disabled = true;
     document.getElementById('ann19Warning').classList.add('hidden');
-    currentStep = 1;
-    initSteps();
-    showStep(1);
+    document.getElementById('sejourAnn19DateGroup').classList.add('hidden');
+    document.getElementById('sejourDateManuelGroup').classList.remove('hidden');
+    currentStep = 1; initSteps(); showStep(1);
   }
 
   document.getElementById('nationalite').addEventListener('change', function() {
